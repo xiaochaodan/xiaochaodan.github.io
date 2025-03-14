@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>workflow</title>
-    <url>/uncategorized/plan/plan/</url>
-    <content><![CDATA[<h2 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h2><p>Workflow的src/kernel目录里，包含了以下独立的模块，基本都是C和简单C++语法实现的，没有复杂的语法，每一个模块都很小，都可以单独拿出来学习：</p>
-<p>poller,可以学习如何使用epoll<br>thrdpool,经典线程池实现<br>msgqueue,消息队列实现<br>Communicator,异步网络通信器，包括了基本的目标管理和负载均衡<br>Executor,包含计算调度算法的执行器<br>IO_Service,异步文件IO</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Git的指令</title>
     <url>/uncategorized/%E7%AC%94%E8%AE%B0/git/</url>
     <content><![CDATA[<h2 id="Git的指令"><a href="#Git的指令" class="headerlink" title="Git的指令"></a>Git的指令</h2><ul>
@@ -41,17 +34,34 @@
 ]]></content>
   </entry>
   <entry>
-    <title>OSTEP总结</title>
+    <title>workflow</title>
+    <url>/uncategorized/plan/plan/</url>
+    <content><![CDATA[<h2 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h2><p>Workflow的src/kernel目录里，包含了以下独立的模块，基本都是C和简单C++语法实现的，没有复杂的语法，每一个模块都很小，都可以单独拿出来学习：</p>
+<p>poller,可以学习如何使用epoll<br>thrdpool,经典线程池实现<br>msgqueue,消息队列实现<br>Communicator,异步网络通信器，包括了基本的目标管理和负载均衡<br>Executor,包含计算调度算法的执行器<br>IO_Service,异步文件IO</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>nasm -I include/ -o mbr.bin mbr.S :在include目录下寻找头文件,编辑</p>
+<p>dd if=/home/chao/bochs/boot/mbr.bin of=/home/chao/bochs/hd60M.img bs=512 count=1 conv=notrunc:将 mbr.bin 写入 hd60M.img 的前 512 字节（MBR 位置），用于制作一个可引导的虚拟硬盘</p>
+<p>nasm -I include/ -o mbr.bin mbr.S</p>
+<p>dd if=/home/chao/bochs/boot/mbr.bin of=/home/chao/bochs/hd60M.img bs=512 count=1 conv=notrunc</p>
+<p>nasm -I include/ -o loader.bin loader.S</p>
+<p>dd if=/home/chao/bochs/boot/loader.bin of=/home/chao/bochs/hd60M.img bs=512 count=3 seek=2 conv=notrunc</p>
+<p>bin/bochs -f bochsrc.disk</p>
+<hr>
+<p>调等级<br>sudo update-alternatives —install /usr/bin/gcc gcc /usr/bin/gcc-4.4 999<br>sudo update-alternatives —install /usr/bin/gcc gcc /usr/bin/gcc-11 110</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>操作系统真相还原</title>
     <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E7%9B%B8%E8%BF%98%E5%8E%9F/</url>
-    <content><![CDATA[<ul>
+    <content><![CDATA[<h2 id="零章"><a href="#零章" class="headerlink" title="零章"></a>零章</h2><ul>
 <li>内存中为什么要分段，操作系统真相还原说不分段无法让不同的程序同时访问相同的物理内存，但是给我虚拟地址最后还是回到了一样的物理内存啊<ul>
 <li>“分段避免直接用物理地址，通过段基址+偏移量，让多个进程并发运行，逻辑地址映射不同物理地址，实现隔离。”</li>
 <li>“分段因大小不固定产生碎片，分页用固定页面优化内存管理。”</li>
 <li>例子：段基址0x1000+偏移0x100=物理0x1100，分段隔离进程</li>
-</ul>
-</li>
-<li>物理地址，逻辑地址，有效地址，线性地址，虚拟地址的区别<ul>
-<li><img src="{8D10284A-2E81-4060-A33D-74B0325B2F24}.png" alt="alt text"></li>
 </ul>
 </li>
 <li>编译性语言与解释性语言<ul>
@@ -66,6 +76,386 @@
 </ul>
 </li>
 </ul>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><ol>
+<li>为什么内存条大小不能超过地址总线的访问范围<ol>
+<li>因为地址总线的宽度是硬件设计上的限制，超出地址总线的访问范围，cpu就无法生成地址去访问他了</li>
+<li>那么为什么还有TB的内存，64位操作系统理论内存条最大为16EB</li>
+<li>地址是地址总线的输出</li>
+</ol>
+</li>
+<li>为什么实模式下段基址要左移4位<ol>
+<li>首先实模式是没有内存保护，线程隔离的电脑重启或开机的状态（BIOS之后的默认状态）</li>
+<li>由于历史原因，以前的是20位地址总线—1MB，现在都是32位地址总线—4GB</li>
+</ol>
+</li>
+<li>ROM:只读存储器</li>
+</ol>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ol>
+<li>编译器给程序中各符号（变量名或函数名等）分配的地址，就是各符号相对于文件开头的偏移量。</li>
+<li>实模式<ol>
+<li>sp,bp,ss寄存器关系：ss寄存器是段寄存器提供段基址，sp,bp提供偏移量，sp指向栈顶，bp指向没有局部变量的栈顶(不包括函数，参数)</li>
+</ol>
+</li>
+<li>简单汇编命令<ol>
+<li>call<br>16 位实模式相对近调用 — 操作数==目标地址-当前地址-指令长度，不跨段<br>16 位实模式间接绝对近调用  — 地址在内存或寄存器，是绝对地址，不跨段<br>16 位实模式直接绝对远调用  —地址为立即数直接用，是绝对地址，跨段<br>16 位实模式间接绝对远调用  — 地址在内存，是绝对地址，跨段</li>
+<li>jmp<br>16 位实模式相对短转移 操作数==目标地址-当前地址-指令长度，不跨段,-128-127,一字节<br>16 位实模式相对近转移 同上，2字节<br>16 位实模式间接绝对近转移 具体同call<br>16 位实模式直接绝对远转移 具体同call<br>16 位实模式间接绝对远转移 具体同call</li>
+<li>jxx<br>a 表示 above 大于<br>b 表示 below 小于<br>c 表示 carry 进位<br>e 表示 equal 等于<br>g 表示 great 大于<br>j 表示 jmp 跳转<br>l 表示 less 小于<br>n 表示 not 非<br>o 表示 overflow 溢出<br>p 表示 parity 奇偶</li>
+</ol>
+</li>
+</ol>
+<h2 id="前三章小结"><a href="#前三章小结" class="headerlink" title="前三章小结"></a>前三章小结</h2><p>电脑开机之后，根据cpu复位时被硬件初始化的固定值（0xFFFF0），cpu找到实模式下BIOS的入口地址，就在1M内存的oxFFF0(大概16B大小)处，这里是一个跳转指令，跳转到真正的BIOS代码区，然后BIOS太小，只负责基本初始化，完不成所有任务，会将控制权交给MBR（主引导程序）,MBR（在磁盘第零扇区，或者第一，看命名方法）会被放在实模式下的可用空间0x7c00(为什么是这里，历史问题)，然后在这里加载，再然后会加控制权移交给加载器等</p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="解惑区"><a href="#解惑区" class="headerlink" title="解惑区"></a>解惑区</h3><ol>
+<li>保护模式段寄存器为什么还是16位？<ol>
+<li>兼容实模式:8086</li>
+<li>保护模式存选择子：13位索引（一位区分GDT/LDT，一位区分特权级别）GDT/LDT（8192项），够用<ol>
+<li>实模式：基址 = 段 × 16 + 偏移。</li>
+<li>保护模式：基址从描述符取 + 偏移。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>bits 伪指令用于指定运行模式，操作数大小反转前缀 0x66 和寻址方式反转前缀 0x67，用于临时将当前运行模式下的操作数大小和寻址方式转变成另外一种模式下的操作数大小及寻址方式</li>
+<li>段描述符记录了段基址，段界限，那么偏移量在哪<ol>
+<li>偏移量：指令操作数提供，通常在通用寄存器（如ebx）或立即数。</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="总结区"><a href="#总结区" class="headerlink" title="总结区"></a>总结区</h3><ol>
+<li><p>实模式下的一些问题？</p>
+<ol>
+<li>实模式下操作系统和用户程序属于同一特权级，没有区别</li>
+<li>逻辑地址就是物理地址</li>
+<li>用户程序可以修改段基址，内存所有地址都能够访问到</li>
+<li>20根地址线，最大内存1M, 太小</li>
+<li>一次只能运行一个程序</li>
+<li>实模式下采用：物理地址 = 基础地址(段基址偏移4位) + 偏移地址来访问内存，对x8616位寄存器最大是2^16=64KB，即当访问的内存超过64KB时，就要更改段基址了，导致频繁切换</li>
+</ol>
+<p>因为这些问题，所以有了保护模式，保护模式可以做到如下：</p>
+<p>地址线32根，最大内存可以是4G<br>32位寄存器，是可以访问到4G内存的</p>
+</li>
+</ol>
+<h4 id="2-分段概述"><a href="#2-分段概述" class="headerlink" title="2. 分段概述"></a><strong>2. 分段概述</strong></h4><p>在 <strong>80386/80486 CPU</strong> 中，共有 <strong>3 种描述符表</strong>：</p>
+<ul>
+<li><strong>全局描述符表（GDT）</strong>：存放操作系统和任务公用的描述符，如公用的数据段、代码段描述符、任务状态段（TSS）描述符和局部描述符表（LDT）描述符。</li>
+<li><strong>局部描述符表（LDT）</strong>：存放各任务的私有描述符，如任务的代码段和数据段描述符等。在 <strong>分页机制出现之前</strong>，LDT 主要用于隔离不同程序的数据，避免相互干扰。</li>
+<li><strong>中断描述符表（IDT）</strong>：存放中断处理程序的入口信息。</li>
+</ul>
+<h4 id="描述符表与寄存器"><a href="#描述符表与寄存器" class="headerlink" title="描述符表与寄存器"></a><strong>描述符表与寄存器</strong></h4><p>描述符表由 <strong>描述符</strong> 依次排列组成，占用一定的内存。CPU 通过 <strong>寄存器</strong> 指示它们在物理存储器中的位置和大小：</p>
+<ul>
+<li><strong>全局描述符表寄存器（GDTR）</strong>：48 位寄存器</li>
+<li><strong>局部描述符表寄存器（LDTR）</strong>：16 位寄存器</li>
+<li><strong>中断描述符表寄存器（IDTR）</strong>：48 位寄存器</li>
+</ul>
+<h4 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a><strong>段寄存器</strong></h4><p>在 <strong>保护模式</strong> 下，每个段寄存器由 <strong>16 位选择器（Selector）</strong> 和 <strong>64 位段描述符寄存器</strong> 组成。</p>
+<ul>
+<li><strong>段选择器（Selector）</strong>：原本实模式下的 <strong>段寄存器</strong>（CS、SS、DS、ES、FS、GS）在保护模式下仍然存在，但其作用变为<strong>存储段选择器</strong>，用于索引描述符表中的段描述符：<ul>
+<li><code>CS</code> 选择的段仍然是 <strong>代码段</strong>。</li>
+<li><code>SS</code> 选择的段仍然是 <strong>堆栈段</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="段选择器结构"><a href="#段选择器结构" class="headerlink" title="段选择器结构"></a><strong>段选择器结构</strong></h4><p>段选择器（16 位）由以下部分组成：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>位数</th>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1</td>
+<td><strong>请求特权级别（RPL）</strong></td>
+<td>0、1、2、3 共 4 级特权级</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>描述符表指示器（TI）</strong></td>
+<td><code>0</code> 表示 GDT，<code>1</code> 表示 LDT</td>
+</tr>
+<tr>
+<td>3-15</td>
+<td><strong>描述符索引（Index）</strong></td>
+<td>在描述符表（GDT/LDT）中的索引，最多可表示 <code>2^13 = 8192</code> 个段</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>描述符索引（Index）</strong>：用于从 <strong>GDT 或 LDT</strong> 选择一个段描述符。</li>
+<li><strong>描述符表指示器（TI）</strong>：<ul>
+<li><code>TI = 0</code>：表示该段的描述符存放在 <strong>GDT</strong>。</li>
+<li><code>TI = 1</code>：表示该段的描述符存放在 <strong>LDT</strong>。</li>
+</ul>
+</li>
+<li><strong>请求特权级（RPL）</strong>：<ul>
+<li>规定 4 级特权级（0、1、2、3），数值越小，特权级越高</li>
+</ul>
+</li>
+</ul>
+<h4 id="如何分段"><a href="#如何分段" class="headerlink" title="如何分段"></a>如何分段</h4><ul>
+<li><p>首先,保护模式下使用<code>分段</code>模式，访问一个内存地址仍然使用<strong>Segment:Offset</strong>的方式，不过要能支持访问到32bit的地址，即4GB内存</p>
+</li>
+<li><p>其次，段访问提供了保护机制，也就说一个段的描述符中需要规定对自身的访问权限（Access）。所以，在保护模式下，对一个段的描述则包括3方面因素：<code>[Base Address, Limit, Access]</code>，它们加在一起被放在一个64bit(8字节)长的数据结构中，即为<strong>段描述符</strong></p>
+</li>
+</ul>
+<ol>
+<li>基地址Base Address分散在这64bit中，整体是32bit的，即确保了能访问整个4GB内存</li>
+<li>描述符类型标志S，可以描述段类型：系统段，数据段，代码段等</li>
+<li>段限长Limit分散在这64bit中，整体是20bit的，当颗粒度G=0时，Limit值的单位是B，即Limit的范围可以是1B到1MB；当G=1，则Limit值的单位是4KB，即Limit的范围可以是4KB到4GB，即确保了能访问整个4GB内存</li>
+<li>GDTR寄存器48bit，32bit描述了在GDT在内存中的起始地址(GDT存放在内存中的某个任意位置，通过GDTR的这32bit先定位到在内存那里，然后才能定位到具体的段描述符号)；16bit限长（2^16=65536)(8196个段描述符 <em> 每个段描述符是8字节，2^13 </em> 2^3 = 2^16)，所以<font color='red'>16bit限长，13bit索引，8196个段描述符，段描述符大小是8字节，这些都是完美的设计数字</font></li>
+</ol>
+<h4 id="物理内存地址如何确定？"><a href="#物理内存地址如何确定？" class="headerlink" title="物理内存地址如何确定？"></a>物理内存地址如何确定？</h4><p>段寄存器的TI=1的内存访问：</p>
+<ol>
+<li>先从全局描述符表寄存器(GDTR)寄存器(48位,其中前32位base+16位长度)中获得全局描述符表(GDT)基址</li>
+<li>从LDTR寄存器中获取LDT所在段的位置索引(LDTR的高13位)</li>
+<li>根据1，2确定GDT中具体的段描述符，即定位到具体的LDT段基址</li>
+<li>由段选择子的高13位位置索引值再从LDT段中定位到具体LDT段描述符</li>
+<li>段描述符中包含段的基址、限长、优先级等各种属性；这就得到了段的起始地址（基址），再加上偏移地址，就能得到最终的物理内存地址</li>
+</ol>
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="疑惑区"><a href="#疑惑区" class="headerlink" title="疑惑区"></a>疑惑区</h3><ol>
+<li>为什么页表中只有20位是存放物理地址的<br>1.因为页目录项和页表项中的都是物理页地址，标准页大小是 4KB，故地址都是 4K 的倍数，也就是地址的低 12位是 0，所以只需要记录物理地址高 20 位就可以</li>
+<li>CPL与DPL<ol>
+<li>CPL：当前特权级（CS低2位）</li>
+<li>DPL：描述符特权级（GDT中）。<br>规则：CPL ≤ DPL可访问。</li>
+</ol>
+</li>
+<li>高特权为何禁低特权代码：<br>CPL &lt; DPL禁止，防内核跑用户恶意代码,中断/门例外。</li>
+<li>一致性代码：<br>CPL ≤ DPL可访问，CPL不变</li>
+<li>将gcc降级<a href="https://blog.csdn.net/weixin_42640948/article/details/123030522">https://blog.csdn.net/weixin_42640948/article/details/123030522</a></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/uncategorized/%E7%AC%94%E8%AE%B0/tcp_ip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/note/</url>
+    <content><![CDATA[<h1 id="第1章"><a href="#第1章" class="headerlink" title="第1章"></a>第1章</h1><h2 id="服务器套接字创建"><a href="#服务器套接字创建" class="headerlink" title="服务器套接字创建"></a>服务器套接字创建</h2><ol>
+<li><code>socket()</code>：创建套接字。</li>
+<li><code>bind()</code>：将服务器的 IP 地址和端口号绑定到一个套接字上。<ol>
+<li>INADDR_ANY:指定地址0.0.0.0，以为这台机器的任意数据（是向绑定的端口号发送的）都可接收</li>
+</ol>
+</li>
+<li><code>listen()</code>：设为监听状态</li>
+<li><code>accept()</code>：接受连接请求。</li>
+</ol>
+<h2 id="客户端步骤"><a href="#客户端步骤" class="headerlink" title="客户端步骤"></a>客户端步骤</h2><ol>
+<li><code>socket()</code>：创建套接字。</li>
+<li><code>connect()</code>：向服务器发连接请求。</li>
+</ol>
+<h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>描述符</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>标准输入</td>
+</tr>
+<tr>
+<td>1</td>
+<td>标准输出</td>
+</tr>
+<tr>
+<td>2</td>
+<td>标准错误</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>文件和套接字创建后分配描述符。</li>
+<li>Linux用“描述符”，Windows用“句柄”。</li>
+</ul>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><ul>
+<li><strong>打开</strong>：<code>int open(const char *path, int flag)</code><ul>
+<li>返回：描述符（成功），-1（失败）。</li>
+<li><strong>flag</strong>：<ul>
+<li><code>O_CREAT</code>：创建文件。</li>
+<li><code>O_TRUNC</code>：清空数据。</li>
+<li><code>O_APPEND</code>：追加数据。</li>
+<li><code>O_RDONLY</code>：只读。</li>
+<li><code>O_WRONLY</code>：只写。</li>
+<li><code>O_RDWR</code>：读写。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>关闭</strong>：<code>int close(int fd)</code><ul>
+<li>返回：0（成功），-1（失败）。</li>
+</ul>
+</li>
+<li><strong>写</strong>：<code>ssize_t write(int fd, const void *buf, size_t nbytes)</code><ul>
+<li>返回：写入字节数（成功），-1（失败）。</li>
+</ul>
+</li>
+<li><strong>读</strong>：<code>ssize_t read(int fd, void *buf, size_t nbytes)</code><ul>
+<li>返回：读取字节数（成功），0（文件末尾），-1（失败）。</li>
+</ul>
+</li>
+</ul>
+<h1 id="第2章"><a href="#第2章" class="headerlink" title="第2章"></a>第2章</h1><h2 id="创建套接字"><a href="#创建套接字" class="headerlink" title="创建套接字"></a>创建套接字</h2><ul>
+<li><strong>函数</strong>: <code>int socket(int domain, int type, int protocol)</code><ul>
+<li>返回: 文件描述符（成功），-1（失败）</li>
+<li><strong>domain</strong>: 协议族</li>
+<li><strong>type</strong>: 传输方式</li>
+<li><strong>protocol</strong>: 具体协议</li>
+</ul>
+</li>
+</ul>
+<h2 id="协议族"><a href="#协议族" class="headerlink" title="协议族"></a>协议族</h2><ul>
+<li><strong>PF_INET</strong>: IPv4，常用</li>
+<li>其他（PF_INET6、PF_LOCAL）略</li>
+</ul>
+<h2 id="套接字类型"><a href="#套接字类型" class="headerlink" title="套接字类型"></a>套接字类型</h2><ol>
+<li><strong>SOCK_STREAM</strong>（面向连接，TCP）<ul>
+<li>可靠、按序、无边界</li>
+<li>有缓冲，慢但不丢数据</li>
+</ul>
+</li>
+<li><strong>SOCK_DGRAM</strong>（面向消息，UDP）<ul>
+<li>快、不可靠、有边界</li>
+<li>可能丢包</li>
+</ul>
+</li>
+</ol>
+<h2 id="协议选择"><a href="#协议选择" class="headerlink" title="协议选择"></a>协议选择</h2><ul>
+<li><strong>TCP</strong>: <code>socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)</code></li>
+<li><strong>UDP</strong>: <code>socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)</code></li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="comment">// TCP套接字</span></span><br><span class="line"><span class="type">int</span> tcp = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);</span><br><span class="line"><span class="comment">// UDP套接字</span></span><br><span class="line"><span class="type">int</span> udp = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);</span><br></pre></td></tr></table></figure>
+<h1 id="第3章地址族与数据序列"><a href="#第3章地址族与数据序列" class="headerlink" title="第3章地址族与数据序列"></a>第3章地址族与数据序列</h1><h2 id="表示-IPV4-地址的结构体"><a href="#表示-IPV4-地址的结构体" class="headerlink" title="表示 IPV4 地址的结构体"></a>表示 IPV4 地址的结构体</h2><p>通用的地址结构体</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> sa_family;   <span class="comment">// 地址族，例如 AF_INET、AF_INET6</span></span><br><span class="line">    <span class="type">char</span> sa_data[<span class="number">14</span>];           <span class="comment">// 存储套接字地址的数据</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>IPV4 地址结构体</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">sa_family_t</span> sin_family;  <span class="comment">//地址族（Address Family）</span></span><br><span class="line">    <span class="type">uint16_t</span> sin_port;       <span class="comment">//16 位 TCP/UDP 端口号</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span> <span class="comment">//32位 IP 地址</span></span><br><span class="line">    <span class="type">char</span> sin_zero[<span class="number">8</span>];        <span class="comment">//不使用</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>该结构体中提到的另一个结构体 in_addr 定义如下，它用来存放 32 位IP地址</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">in_addr_t</span> s_addr; <span class="comment">//32位IPV4地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于以上两个结构体的一些数据类型：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据类型名称</th>
+<th style="text-align:center">数据类型说明</th>
+<th style="text-align:center">声明的头文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">int 8_t</td>
+<td style="text-align:center">signed 8-bit int</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">uint8_t</td>
+<td style="text-align:center">unsigned 8-bit int (unsigned char)</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">int16_t</td>
+<td style="text-align:center">signed 16-bit int</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">uint16_t</td>
+<td style="text-align:center">unsigned 16-bit int (unsigned short)</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">int32_t</td>
+<td style="text-align:center">signed 32-bit int</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">uint32_t</td>
+<td style="text-align:center">unsigned 32-bit int (unsigned long)</td>
+<td style="text-align:center">sys/types.h</td>
+</tr>
+<tr>
+<td style="text-align:center">sa_family_t</td>
+<td style="text-align:center">地址族（address family）</td>
+<td style="text-align:center">sys/socket.h</td>
+</tr>
+<tr>
+<td style="text-align:center">socklen_t</td>
+<td style="text-align:center">长度（length of struct）</td>
+<td style="text-align:center">sys/socket.h</td>
+</tr>
+<tr>
+<td style="text-align:center">in_addr_t</td>
+<td style="text-align:center">IP地址，声明为 uint_32_t</td>
+<td style="text-align:center">netinet/in.h</td>
+</tr>
+<tr>
+<td style="text-align:center">in_port_t</td>
+<td style="text-align:center">端口号，声明为 uint_16_t</td>
+<td style="text-align:center">netinet/in.h</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>为什么要额外定义这些数据类型呢？<br>以后的64位，或者更多位，都可以保证确定的字节数</p>
+<h2 id="结构体-sockaddr-in-的成员分析"><a href="#结构体-sockaddr-in-的成员分析" class="headerlink" title="结构体 sockaddr_in 的成员分析"></a>结构体 sockaddr_in 的成员分析</h2><ul>
+<li>成员 sin_family</li>
+</ul>
+<blockquote>
+<p>地址族</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>地址族（Address Family）</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AF_INET</td>
+<td>IPV4用的地址族</td>
+</tr>
+<tr>
+<td>AF_INET6</td>
+<td>IPV6用的地址族</td>
+</tr>
+<tr>
+<td>AF_LOCAL</td>
+<td>本地通信中采用的 Unix 协议的地址族</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>成员 sin_port</p>
+<p>该成员保存 16 位端口号，重点在于，它以网络字节序保存。</p>
+</li>
+<li><p>成员 sin_addr</p>
+<p>该成员保存 32 位 IP 地址信息，且也以网络字节序保存</p>
+</li>
+<li><p>成员 sin_zero</p>
+<p>无特殊含义。</p>
+</li>
+</ul>
+<h2 id="字节序转换"><a href="#字节序转换" class="headerlink" title="字节序转换"></a>字节序转换</h2><p>帮助转换字节序的函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="title function_">htons</span><span class="params">(<span class="type">unsigned</span> <span class="type">short</span>)</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="title function_">ntohs</span><span class="params">(<span class="type">unsigned</span> <span class="type">short</span>)</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="title function_">htonl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span>)</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="title function_">ntohl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span>)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>htons 的 h 代表主机（host）字节序。</li>
+<li>htons 的 n 代表网络（network）字节序。</li>
+<li>s 代表两个字节的 short 类型，因此以 s 为后缀的函数用于端口转换</li>
+<li>l 代表四个字节的 long 类型，所以以 l 为后缀的函数用于 IP 地址转换</li>
+</ul>
+<h2 id="将字符串信息转换为网络字节序的整数型"><a href="#将字符串信息转换为网络字节序的整数型" class="headerlink" title="将字符串信息转换为网络字节序的整数型"></a>将字符串信息转换为网络字节序的整数型</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="type">in_addr_t</span> <span class="title function_">inet_addr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *<span class="built_in">string</span>)</span>;</span><br><span class="line"><span class="comment">//成功时返回 32 位大端序整数型值，失败时返回 INADDR_NONE</span></span><br></pre></td></tr></table></figure>
+<p>inet_aton 函数与 inet_addr 函数在功能上完全相同，也是将字符串形式的IP地址转换成整数型的IP地址。只不过该函数用了 in_addr 结构体，且使用频率更高。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">inet_aton</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *<span class="built_in">string</span>, <span class="keyword">struct</span> in_addr *addr)</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">成功时返回 1 ，失败时返回 0</span></span><br><span class="line"><span class="comment">string: 含有需要转换的IP地址信息的字符串地址值</span></span><br><span class="line"><span class="comment">addr: 保存转换结果的 in_addr 结构体变量的地址值</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>还有一个函数，与 inet_aton() 正好相反，它可以把网络字节序整数型IP地址转换成我们熟悉的字符串形式，函数原型如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">inet_ntoa</span><span class="params">(<span class="keyword">struct</span> in_addr adr)</span>;</span><br><span class="line"><span class="comment">//成功时返回保存转换结果的字符串地址值，失败时返回 NULL 空指针</span></span><br></pre></td></tr></table></figure>
+<p>该函数会自己分配空间存储结果，多次调用的结果在一个位置，需另外保存结果否则会被覆盖</p>
 ]]></content>
   </entry>
 </search>
