@@ -41,6 +41,243 @@
 ]]></content>
   </entry>
   <entry>
+    <title>MySQL</title>
+    <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</url>
+    <content><![CDATA[<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><ol>
+<li>sudo service mysql status:查看mysql服务状态</li>
+<li>sudo service mysql start:启动mysql服务</li>
+</ol>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><ol>
+<li>登录数据库   mysql -u root -p</li>
+<li>推出数据库   exit/quit</li>
+</ol>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><ol>
+<li>USE 数据库名;选择数据库</li>
+<li>SHOW DATABASES;                  显示数据库</li>
+<li>SHOW TABLES;                     显示当前数据库的列表</li>
+<li>SHOW COLUMNS FROM 表名;          显示表字段<ol>
+<li>DESCRIBE 表名;                显示表字段,等价与SHOW COLUMNS FROM 表名;</li>
+</ol>
+</li>
+<li>SHOW STATUS;                     显示服务器状态，给你一份健康报告</li>
+<li>SHOW CREATE DATABASE 数据库名;   显示创建数据库的SQL语句</li>
+<li>SHOW CREATE TABLE 表名;          显示创建表的SQL语句</li>
+<li>SHOW ERRORS;                     显示上一次语句的错误</li>
+<li>SHOW WARNINGS;                   显示上一次语句的警告</li>
+</ol>
+<h1 id="补充1"><a href="#补充1" class="headerlink" title="补充1"></a>补充1</h1><ol>
+<li>CREATE DATABASE 数据库名;      创建数据库</li>
+<li>DROP DATABASE 数据库名;        删除数据库</li>
+<li>CREATE TABLE 表名 (字段名 字段类型 约束,<pre><code>           字段名 字段类型 约束
+           ...
+</code></pre>);</li>
+<li>INSERT INTO 表名 (字段名, 字段名, …) VALUES (值, 值, …);   插入数据</li>
+</ol>
+<hr>
+<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INT</code> / <code>INTEGER</code></td>
+<td>整数类型，常用于 ID、数量等。可加 <code>UNSIGNED</code> 表示非负。</td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td>占用更小空间的整数，适合范围小的值。</td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td>用于非常大的整数，如用户量巨大的系统。</td>
+</tr>
+<tr>
+<td><code>FLOAT</code> / <code>DOUBLE</code></td>
+<td>浮点数，适合温度、速度等有小数的值。</td>
+</tr>
+<tr>
+<td><code>DECIMAL(p, s)</code></td>
+<td>精确浮点数，常用于金融，<code>p</code> 为总位数，<code>s</code> 为小数位数。</td>
+</tr>
+<tr>
+<td><code>CHAR(n)</code></td>
+<td>定长字符串，固定为 <code>n</code> 个字符，适合身份证号等。</td>
+</tr>
+<tr>
+<td><code>VARCHAR(n)</code></td>
+<td>可变长度字符串，最多 <code>n</code> 个字符，适合姓名、地址等。</td>
+</tr>
+<tr>
+<td><code>TEXT</code></td>
+<td>长文本，适合存放文章、备注等内容。</td>
+</tr>
+<tr>
+<td><code>DATE</code></td>
+<td>日期类型，格式 <code>YYYY-MM-DD</code>。</td>
+</tr>
+<tr>
+<td><code>TIME</code></td>
+<td>时间类型，格式 <code>HH:MM:SS</code>。</td>
+</tr>
+<tr>
+<td><code>DATETIME</code></td>
+<td>日期 + 时间，格式 <code>YYYY-MM-DD HH:MM:SS</code>。</td>
+</tr>
+<tr>
+<td><code>BOOLEAN</code></td>
+<td>布尔类型，<code>TRUE</code> 或 <code>FALSE</code>，有些数据库用 <code>1/0</code>。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>约束关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PRIMARY KEY</code></td>
+<td>主键，唯一标识每一行记录，不能重复也不能为空。</td>
+</tr>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>不允许为空，必须有值。</td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>值必须唯一，不可重复。</td>
+</tr>
+<tr>
+<td><code>DEFAULT</code></td>
+<td>指定默认值，插入时未指定则使用该值。</td>
+</tr>
+<tr>
+<td><code>CHECK (条件)</code></td>
+<td>添加条件限制，数据必须满足该条件。</td>
+</tr>
+<tr>
+<td><code>FOREIGN KEY</code></td>
+<td>外键，用于关联其他表的主键，建立表之间的关系。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><p>CREATE TABLE products(<br>   prod_name VARCHAR(100),<br>   id INT<br>);</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>操作系统真相还原</title>
+    <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E7%9B%B8%E8%BF%98%E5%8E%9F/</url>
+    <content><![CDATA[<h2 id="零章"><a href="#零章" class="headerlink" title="零章"></a>零章</h2><ul>
+<li>内存中为什么要分段，操作系统真相还原说不分段无法让不同的程序同时访问相同的物理内存，但是给我虚拟地址最后还是回到了一样的物理内存啊<ul>
+<li>“分段避免直接用物理地址，通过段基址+偏移量，让多个进程并发运行，逻辑地址映射不同物理地址，实现隔离。”</li>
+<li>“分段因大小不固定产生碎片，分页用固定页面优化内存管理。”</li>
+<li>例子：段基址0x1000+偏移0x100=物理0x1100，分段隔离进程</li>
+</ul>
+</li>
+<li>编译性语言与解释性语言<ul>
+<li>编译型 <ul>
+<li>过程：<br>  预处理：处理头文件、宏（#include展开）。<br>  编译：源代码（C/C++）一次性翻译成汇编代码（.s文件，比如mov eax, 1）。<br>  汇编：汇编器（as/nasm）把汇编代码转成机器码（目标文件，.o）。<br>  链接：链接器（ld）把多个目标文件和库合成可执行文件（.exe）。<br>  运行时，OS加载机器码，CPU直接执行</li>
+</ul>
+</li>
+<li>解释型<ul>
+<li>过程<br>  解释器逐行读取源代码。<br>  每行直接翻译成机器码（或中间表示后转机器码），交给CPU执行。<br>  不生成独立文件，下行接着译。 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><ol>
+<li>为什么内存条大小不能超过地址总线的访问范围<ol>
+<li>因为地址总线的宽度是硬件设计上的限制，超出地址总线的访问范围，cpu就无法生成地址去访问他了</li>
+<li>那么为什么还有TB的内存，64位操作系统理论内存条最大为16EB</li>
+<li>地址是地址总线的输出</li>
+</ol>
+</li>
+<li>为什么实模式下段基址要左移4位<ol>
+<li>首先实模式是没有内存保护，线程隔离的电脑重启或开机的状态（BIOS之后的默认状态）</li>
+<li>由于历史原因，以前的是20位地址总线—1MB，现在都是32位地址总线—4GB</li>
+</ol>
+</li>
+<li>ROM:只读存储器</li>
+</ol>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ol>
+<li>编译器给程序中各符号（变量名或函数名等）分配的地址，就是各符号相对于文件开头的偏移量。</li>
+<li>实模式<ol>
+<li>sp,bp,ss寄存器关系：ss寄存器是段寄存器提供段基址，sp,bp提供偏移量，sp指向栈顶，bp指向没有局部变量的栈顶(不包括函数，参数)</li>
+</ol>
+</li>
+<li>简单汇编命令<ol>
+<li>call<br>16 位实模式相对近调用 — 操作数==目标地址-当前地址-指令长度，不跨段<br>16 位实模式间接绝对近调用  — 地址在内存或寄存器，是绝对地址，不跨段<br>16 位实模式直接绝对远调用  —地址为立即数直接用，是绝对地址，跨段<br>16 位实模式间接绝对远调用  — 地址在内存，是绝对地址，跨段</li>
+<li>jmp<br>16 位实模式相对短转移 操作数==目标地址-当前地址-指令长度，不跨段,-128-127,一字节<br>16 位实模式相对近转移 同上，2字节<br>16 位实模式间接绝对近转移 具体同call<br>16 位实模式直接绝对远转移 具体同call<br>16 位实模式间接绝对远转移 具体同call</li>
+<li>jxx<br>a 表示 above 大于<br>b 表示 below 小于<br>c 表示 carry 进位<br>e 表示 equal 等于<br>g 表示 great 大于<br>j 表示 jmp 跳转<br>l 表示 less 小于<br>n 表示 not 非<br>o 表示 overflow 溢出<br>p 表示 parity 奇偶</li>
+</ol>
+</li>
+</ol>
+<h2 id="前三章小结"><a href="#前三章小结" class="headerlink" title="前三章小结"></a>前三章小结</h2><p>电脑开机之后，根据cpu复位时被硬件初始化的固定值（0xFFFF0），cpu找到实模式下BIOS的入口地址，就在1M内存的oxFFF0(大概16B大小)处，这里是一个跳转指令，跳转到真正的BIOS代码区，然后BIOS太小，只负责基本初始化，完不成所有任务，会将控制权交给MBR（主引导程序）,MBR（在磁盘第零扇区，或者第一，看命名方法）会被放在实模式下的可用空间0x7c00(为什么是这里，历史问题)，然后在这里加载，再然后会加控制权移交给加载器等</p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="解惑区"><a href="#解惑区" class="headerlink" title="解惑区"></a>解惑区</h3><ol>
+<li>保护模式段寄存器为什么还是16位？<ol>
+<li>兼容实模式:8086</li>
+<li>保护模式存选择子：13位索引（一位区分GDT/LDT，一位区分特权级别）GDT/LDT（8192项），够用<ol>
+<li>实模式：基址 = 段 × 16 + 偏移。</li>
+<li>保护模式：基址从描述符取 + 偏移。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>bits 伪指令用于指定运行模式，操作数大小反转前缀 0x66 和寻址方式反转前缀 0x67，用于临时将当前运行模式下的操作数大小和寻址方式转变成另外一种模式下的操作数大小及寻址方式</li>
+<li>段描述符记录了段基址，段界限，那么偏移量在哪<ol>
+<li>偏移量：指令操作数提供，通常在通用寄存器（如ebx）或立即数。</li>
+</ol>
+</li>
+</ol>
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="疑惑区"><a href="#疑惑区" class="headerlink" title="疑惑区"></a>疑惑区</h3><ol>
+<li>为什么页表中只有20位是存放物理地址的<br>1.因为页目录项和页表项中的都是物理页地址，标准页大小是 4KB，故地址都是 4K 的倍数，也就是地址的低 12位是 0，所以只需要记录物理地址高 20 位就可以</li>
+<li>CPL与DPL<ol>
+<li>CPL：当前特权级（CS低2位）</li>
+<li>DPL：描述符特权级（GDT中）。<br>规则：CPL ≤ DPL可访问。</li>
+</ol>
+</li>
+<li>高特权为何禁低特权代码：<br>CPL &lt; DPL禁止，防内核跑用户恶意代码,中断/门例外。</li>
+<li>一致性代码：<br>CPL ≤ DPL可访问，CPL不变</li>
+<li>将gcc降级<a href="https://blog.csdn.net/weixin_42640948/article/details/123030522">https://blog.csdn.net/weixin_42640948/article/details/123030522</a></li>
+<li>为什么页表创建后我们的低1MB与物理地址是一一对应的关系<br>7.早已经采用了平坦模型，为什么所有用户进程共享几个选择子</li>
+</ol>
+<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ol>
+<li>特权级—-内核态（CPL=0） 运行时，GS 可能指向 DPL=0 的显存段描述符（比如 0xB8000）。<br>返回用户态（CPL=3） 时：<br>如果 GS 仍然指向 DPL=0 的显存段，如果没有检查措施的情况下，用户太是不可以访问GS的吧，因为max(CPL,RPL)&gt;DPL(0),没有检查的话，是将问题延后了，只是用户态不可能有机会访问它</li>
+</ol>
+<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><ol>
+<li>什么是开中断，什么是关中断</li>
+<li>介绍一下#ifdef —#else  #endif结构</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> 宏名</span></span><br><span class="line">    <span class="comment">// 如果 宏名 被定义，则编译这部分代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="comment">// 如果 宏名 没有被定义，则编译这部分代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><ol>
+<li>进程与线程的区别<ol>
+<li>进程=线程+资源</li>
+<li>进程分为单线程进程（只有一个执行流即一个线程）与多线程进程（多个执行流，即多个线程）</li>
+<li>进程占有全部资源，线程要依赖与进程的资源，线程之间的资源可相互读、写</li>
+<li>线程可以看为将进程的一些函数拉出来单独执行</li>
+</ol>
+</li>
+<li>关中断如何实现原子性<ol>
+<li>就是说关中断使得不会被硬件设备中断，这是哪怕是处理器告诉你：哥们你的执行时间到了，该下去了，这时候也不会被中断</li>
+<li>GPT：关中断（CLI 指令）会禁止所有外部硬件中断，即使是处理器的调度机制本身也无法强行打断你的执行</li>
+</ol>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>tcp_ip网络编程</title>
     <url>/uncategorized/%E7%AC%94%E8%AE%B0/tcp_ip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/note/</url>
     <content><![CDATA[<h1 id="第1章"><a href="#第1章" class="headerlink" title="第1章"></a>第1章</h1><h2 id="服务器套接字创建"><a href="#服务器套接字创建" class="headerlink" title="服务器套接字创建"></a>服务器套接字创建</h2><ol>
@@ -562,223 +799,6 @@
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE * fp;</span><br><span class="line">    <span class="type">int</span> fd=open(<span class="string">&quot;old.txt&quot;</span>,O_WRONLY|O_CREAT|O_TRUNC);</span><br><span class="line">    <span class="keyword">if</span>(fd==<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fputs</span>(<span class="string">&quot;file open error&quot;</span>,<span class="built_in">stdout</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fp=fdopen(fd,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;First file description is %d \n&quot;</span>,fd);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;Network C programming \n&quot;</span>,fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Second file description is %d \n&quot;</span>,fileno(fp));</span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="基于套接字的标准-I-O-函数使用"><a href="#基于套接字的标准-I-O-函数使用" class="headerlink" title="基于套接字的标准 I/O 函数使用"></a>基于套接字的标准 I/O 函数使用</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUF_SIZE 1024</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> serv_sock,clnt_sock;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>,<span class="title">clnt_addr</span>;</span></span><br><span class="line">    FILE* readfp ,*writefp;</span><br><span class="line">    <span class="type">char</span> message[BUF_SIZE];</span><br><span class="line">    <span class="type">int</span> str_len;</span><br><span class="line">    <span class="type">socklen_t</span> clnt_addr_size;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(argc!=<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Usage : %s &lt;port&gt;\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    serv_sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(serv_sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;socket() error&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);</span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">1</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(bind(serv_sock,(<span class="keyword">struct</span> sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)</span><br><span class="line">        error_handling(<span class="string">&quot;bind() error&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(listen(serv_sock,<span class="number">5</span>)==<span class="number">-1</span>) error_handling(<span class="string">&quot;listen() error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    clnt_addr_size=<span class="keyword">sizeof</span>(clnt_addr);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        clnt_sock=accept(serv_sock,(<span class="keyword">struct</span> sockaddr*)&amp;clnt_addr,&amp;clnt_addr_size);</span><br><span class="line">        <span class="keyword">if</span>(clnt_sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;accept() error&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;Connected client %d \n&quot;</span>,i+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        readfp=fdopen(clnt_sock,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">        writefp=fdopen(clnt_sock,<span class="string">&quot;w&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!feof(readfp))</span><br><span class="line">        &#123;</span><br><span class="line">            fgets(message,BUF_SIZE,readfp);</span><br><span class="line">            <span class="built_in">fputs</span>(message,writefp);</span><br><span class="line">            fflush(writefp);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fclose(readfp);</span><br><span class="line">        fclose(writefp);</span><br><span class="line">    &#125;</span><br><span class="line">    close(serv_sock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUF_SIZE 1024</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sock;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    FILE* readfp ,*writefp;</span><br><span class="line">    <span class="type">char</span> message[BUF_SIZE];</span><br><span class="line">    <span class="type">int</span> str_len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(argc!=<span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Usage : %s &lt;port&gt;\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;socket() error&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=inet_addr(argv[<span class="number">1</span>]);</span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connect(sock,(<span class="keyword">struct</span> sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)error_handling(<span class="string">&quot;connect() error&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;Connect ............\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    readfp=fdopen(sock,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">    writefp=fdopen(sock,<span class="string">&quot;w&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fputs</span>(<span class="string">&quot;Input message(Q to quit): &quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line">        fgets(message, BUF_SIZE, <span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(message, <span class="string">&quot;q\n&quot;</span>) || !<span class="built_in">strcmp</span>(message, <span class="string">&quot;Q\n&quot;</span>))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">fputs</span>(message,writefp);</span><br><span class="line">        fflush(writefp);</span><br><span class="line">        fgets(message,BUF_SIZE,readfp);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Message from server: %s&quot;</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(writefp);</span><br><span class="line">    fclose(readfp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>nasm -I include/ -o mbr.bin mbr.S :在include目录下寻找头文件,编辑</p>
-<p>dd if=/home/chao/bochs/boot/mbr.bin of=/home/chao/bochs/hd60M.img bs=512 count=1 conv=notrunc:将 mbr.bin 写入 hd60M.img 的前 512 字节（MBR 位置），用于制作一个可引导的虚拟硬盘,bs 指定每次读取的字节数，count 指定读取的次数，conv 指定转换方式，notrunc 表示不截断文件，seek<br>分析 ld main.o -Ttext 0xc0001500 -e main -o kernel.bin—连接指令，-e main指定入口函数,-Ttext指定程序起始地址</p>
-<p>第六章<br>nasm -I include/ -o mbr.bin mbr.S<br>dd if=/home/chao/bochs/boot/mbr.bin of=/home/chao/bochs/hd60M.img bs=512 count=1 conv=notrunc</p>
-<p>nasm -I include/ -o loader.bin loader.S<br>dd if=/home/chao/bochs/boot/loader.bin of=/home/chao/bochs/hd60M.img bs=512 count=3 seek=2 conv=notrunc</p>
-<p>nasm -f elf -o lib/kernel/print.o lib/kernel/print.S</p>
-<p>gcc -m32 -I lib/kernel/ -c -o lib/kernel/main.o lib/kernel/main.c<br>ld -m elf_i386 -Ttext 0xc0001500 -e main -o lib/kernel/kernel.bin lib/kernel/main.o lib/kernel/print.o<br>dd if=/home/chao/bochs/lib/kernel/kernel.bin of=/home/chao/bochs/hd60M.img bs=512 count=200 seek=9 conv=notrunc</p>
-<p>bin/bochs -f bochsrc.disk</p>
-<hr>
-<p>调等级<br>sudo update-alternatives —install /usr/bin/gcc gcc /usr/bin/gcc-4.4 999<br>sudo update-alternatives —install /usr/bin/gcc gcc /usr/bin/gcc-11 110</p>
-<p>第七章<br>gcc -m32 -I lib/kernel -c -o build/timer.o device/timer.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/main.o lib/kernel/main.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/interrupt.o lib/kernel/interrupt.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/init.o lib/kernel/init.c<br>nasm -f elf -o build/print.o lib/kernel/print.S<br>nasm -f elf -o build/kernel.o lib/kernel/kernel.S<br>ld -m elf_i386 -Ttext 0xc0001500 -e main -o build/kernel.bin build/main.o build/init.o build/interrupt.o  \<br>build/print.o build/kernel.o build/timer.o<br>dd if=/home/chao/bochs/build/kernel.bin of=/home/chao/bochs/hd60M.img bs=512 count=200 seek=9 conv=notrunc<br>bin/bochs -f bochsrc.disk</p>
-<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><p>gcc -m32 -I lib/kernel -c -o build/timer.o device/timer.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/main.o lib/kernel/main.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/interrupt.o lib/kernel/interrupt.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/init.o lib/kernel/init.c<br>gcc -m32 -I lib/kernel/ -m32 -I lib/ -m32 -I kernel/ -c -fno-builtin -o build/debug.o lib/kernel/debug.c<br>nasm -f elf -o build/print.o lib/kernel/print.S<br>nasm -f elf -o build/kernel.o lib/kernel/kernel.S<br>ld -m elf_i386 -Ttext 0xc0001500 -e main -o build/kernel.bin build/main.o build/init.o build/interrupt.o  \<br>build/print.o build/kernel.o build/timer.o build/debug.o<br>dd if=/home/chao/bochs/build/kernel.bin of=/home/chao/bochs/hd60M.img bs=512 count=200 seek=9 conv=notrunc<br>bin/bochs -f bochsrc.disk</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>操作系统真相还原</title>
-    <url>/uncategorized/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E7%9B%B8%E8%BF%98%E5%8E%9F/</url>
-    <content><![CDATA[<h2 id="零章"><a href="#零章" class="headerlink" title="零章"></a>零章</h2><ul>
-<li>内存中为什么要分段，操作系统真相还原说不分段无法让不同的程序同时访问相同的物理内存，但是给我虚拟地址最后还是回到了一样的物理内存啊<ul>
-<li>“分段避免直接用物理地址，通过段基址+偏移量，让多个进程并发运行，逻辑地址映射不同物理地址，实现隔离。”</li>
-<li>“分段因大小不固定产生碎片，分页用固定页面优化内存管理。”</li>
-<li>例子：段基址0x1000+偏移0x100=物理0x1100，分段隔离进程</li>
-</ul>
-</li>
-<li>编译性语言与解释性语言<ul>
-<li>编译型 <ul>
-<li>过程：<br>  预处理：处理头文件、宏（#include展开）。<br>  编译：源代码（C/C++）一次性翻译成汇编代码（.s文件，比如mov eax, 1）。<br>  汇编：汇编器（as/nasm）把汇编代码转成机器码（目标文件，.o）。<br>  链接：链接器（ld）把多个目标文件和库合成可执行文件（.exe）。<br>  运行时，OS加载机器码，CPU直接执行</li>
-</ul>
-</li>
-<li>解释型<ul>
-<li>过程<br>  解释器逐行读取源代码。<br>  每行直接翻译成机器码（或中间表示后转机器码），交给CPU执行。<br>  不生成独立文件，下行接着译。 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><ol>
-<li>为什么内存条大小不能超过地址总线的访问范围<ol>
-<li>因为地址总线的宽度是硬件设计上的限制，超出地址总线的访问范围，cpu就无法生成地址去访问他了</li>
-<li>那么为什么还有TB的内存，64位操作系统理论内存条最大为16EB</li>
-<li>地址是地址总线的输出</li>
-</ol>
-</li>
-<li>为什么实模式下段基址要左移4位<ol>
-<li>首先实模式是没有内存保护，线程隔离的电脑重启或开机的状态（BIOS之后的默认状态）</li>
-<li>由于历史原因，以前的是20位地址总线—1MB，现在都是32位地址总线—4GB</li>
-</ol>
-</li>
-<li>ROM:只读存储器</li>
-</ol>
-<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ol>
-<li>编译器给程序中各符号（变量名或函数名等）分配的地址，就是各符号相对于文件开头的偏移量。</li>
-<li>实模式<ol>
-<li>sp,bp,ss寄存器关系：ss寄存器是段寄存器提供段基址，sp,bp提供偏移量，sp指向栈顶，bp指向没有局部变量的栈顶(不包括函数，参数)</li>
-</ol>
-</li>
-<li>简单汇编命令<ol>
-<li>call<br>16 位实模式相对近调用 — 操作数==目标地址-当前地址-指令长度，不跨段<br>16 位实模式间接绝对近调用  — 地址在内存或寄存器，是绝对地址，不跨段<br>16 位实模式直接绝对远调用  —地址为立即数直接用，是绝对地址，跨段<br>16 位实模式间接绝对远调用  — 地址在内存，是绝对地址，跨段</li>
-<li>jmp<br>16 位实模式相对短转移 操作数==目标地址-当前地址-指令长度，不跨段,-128-127,一字节<br>16 位实模式相对近转移 同上，2字节<br>16 位实模式间接绝对近转移 具体同call<br>16 位实模式直接绝对远转移 具体同call<br>16 位实模式间接绝对远转移 具体同call</li>
-<li>jxx<br>a 表示 above 大于<br>b 表示 below 小于<br>c 表示 carry 进位<br>e 表示 equal 等于<br>g 表示 great 大于<br>j 表示 jmp 跳转<br>l 表示 less 小于<br>n 表示 not 非<br>o 表示 overflow 溢出<br>p 表示 parity 奇偶</li>
-</ol>
-</li>
-</ol>
-<h2 id="前三章小结"><a href="#前三章小结" class="headerlink" title="前三章小结"></a>前三章小结</h2><p>电脑开机之后，根据cpu复位时被硬件初始化的固定值（0xFFFF0），cpu找到实模式下BIOS的入口地址，就在1M内存的oxFFF0(大概16B大小)处，这里是一个跳转指令，跳转到真正的BIOS代码区，然后BIOS太小，只负责基本初始化，完不成所有任务，会将控制权交给MBR（主引导程序）,MBR（在磁盘第零扇区，或者第一，看命名方法）会被放在实模式下的可用空间0x7c00(为什么是这里，历史问题)，然后在这里加载，再然后会加控制权移交给加载器等</p>
-<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="解惑区"><a href="#解惑区" class="headerlink" title="解惑区"></a>解惑区</h3><ol>
-<li>保护模式段寄存器为什么还是16位？<ol>
-<li>兼容实模式:8086</li>
-<li>保护模式存选择子：13位索引（一位区分GDT/LDT，一位区分特权级别）GDT/LDT（8192项），够用<ol>
-<li>实模式：基址 = 段 × 16 + 偏移。</li>
-<li>保护模式：基址从描述符取 + 偏移。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>bits 伪指令用于指定运行模式，操作数大小反转前缀 0x66 和寻址方式反转前缀 0x67，用于临时将当前运行模式下的操作数大小和寻址方式转变成另外一种模式下的操作数大小及寻址方式</li>
-<li>段描述符记录了段基址，段界限，那么偏移量在哪<ol>
-<li>偏移量：指令操作数提供，通常在通用寄存器（如ebx）或立即数。</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h3 id="总结区"><a href="#总结区" class="headerlink" title="总结区"></a>总结区</h3><ol>
-<li><p>实模式下的一些问题？</p>
-<ol>
-<li>实模式下操作系统和用户程序属于同一特权级，没有区别</li>
-<li>逻辑地址就是物理地址</li>
-<li>用户程序可以修改段基址，内存所有地址都能够访问到</li>
-<li>20根地址线，最大内存1M, 太小</li>
-<li>一次只能运行一个程序</li>
-<li>实模式下采用：物理地址 = 基础地址(段基址偏移4位) + 偏移地址来访问内存，对x8616位寄存器最大是2^16=64KB，即当访问的内存超过64KB时，就要更改段基址了，导致频繁切换</li>
-</ol>
-<p>因为这些问题，所以有了保护模式，保护模式可以做到如下：</p>
-<p>地址线32根，最大内存可以是4G<br>32位寄存器，是可以访问到4G内存的</p>
-</li>
-</ol>
-<h4 id="2-分段概述"><a href="#2-分段概述" class="headerlink" title="2. 分段概述"></a><strong>2. 分段概述</strong></h4><p>在 <strong>80386/80486 CPU</strong> 中，共有 <strong>3 种描述符表</strong>：</p>
-<ul>
-<li><strong>全局描述符表（GDT）</strong>：存放操作系统和任务公用的描述符，如公用的数据段、代码段描述符、任务状态段（TSS）描述符和局部描述符表（LDT）描述符。</li>
-<li><strong>局部描述符表（LDT）</strong>：存放各任务的私有描述符，如任务的代码段和数据段描述符等。在 <strong>分页机制出现之前</strong>，LDT 主要用于隔离不同程序的数据，避免相互干扰。</li>
-<li><strong>中断描述符表（IDT）</strong>：存放中断处理程序的入口信息。</li>
-</ul>
-<h4 id="描述符表与寄存器"><a href="#描述符表与寄存器" class="headerlink" title="描述符表与寄存器"></a><strong>描述符表与寄存器</strong></h4><p>描述符表由 <strong>描述符</strong> 依次排列组成，占用一定的内存。CPU 通过 <strong>寄存器</strong> 指示它们在物理存储器中的位置和大小：</p>
-<ul>
-<li><strong>全局描述符表寄存器（GDTR）</strong>：48 位寄存器</li>
-<li><strong>局部描述符表寄存器（LDTR）</strong>：16 位寄存器</li>
-<li><strong>中断描述符表寄存器（IDTR）</strong>：48 位寄存器</li>
-</ul>
-<h4 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a><strong>段寄存器</strong></h4><p>在 <strong>保护模式</strong> 下，每个段寄存器由 <strong>16 位选择器（Selector）</strong> 和 <strong>64 位段描述符寄存器</strong> 组成。</p>
-<ul>
-<li><strong>段选择器（Selector）</strong>：原本实模式下的 <strong>段寄存器</strong>（CS、SS、DS、ES、FS、GS）在保护模式下仍然存在，但其作用变为<strong>存储段选择器</strong>，用于索引描述符表中的段描述符：<ul>
-<li><code>CS</code> 选择的段仍然是 <strong>代码段</strong>。</li>
-<li><code>SS</code> 选择的段仍然是 <strong>堆栈段</strong>。</li>
-</ul>
-</li>
-</ul>
-<h4 id="段选择器结构"><a href="#段选择器结构" class="headerlink" title="段选择器结构"></a><strong>段选择器结构</strong></h4><p>段选择器（16 位）由以下部分组成：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>位数</th>
-<th>字段名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0-1</td>
-<td><strong>请求特权级别（RPL）</strong></td>
-<td>0、1、2、3 共 4 级特权级</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>描述符表指示器（TI）</strong></td>
-<td><code>0</code> 表示 GDT，<code>1</code> 表示 LDT</td>
-</tr>
-<tr>
-<td>3-15</td>
-<td><strong>描述符索引（Index）</strong></td>
-<td>在描述符表（GDT/LDT）中的索引，最多可表示 <code>2^13 = 8192</code> 个段</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li><strong>描述符索引（Index）</strong>：用于从 <strong>GDT 或 LDT</strong> 选择一个段描述符。</li>
-<li><strong>描述符表指示器（TI）</strong>：<ul>
-<li><code>TI = 0</code>：表示该段的描述符存放在 <strong>GDT</strong>。</li>
-<li><code>TI = 1</code>：表示该段的描述符存放在 <strong>LDT</strong>。</li>
-</ul>
-</li>
-<li><strong>请求特权级（RPL）</strong>：<ul>
-<li>规定 4 级特权级（0、1、2、3），数值越小，特权级越高</li>
-</ul>
-</li>
-</ul>
-<h4 id="如何分段"><a href="#如何分段" class="headerlink" title="如何分段"></a>如何分段</h4><ul>
-<li><p>首先,保护模式下使用<code>分段</code>模式，访问一个内存地址仍然使用<strong>Segment:Offset</strong>的方式，不过要能支持访问到32bit的地址，即4GB内存</p>
-</li>
-<li><p>其次，段访问提供了保护机制，也就说一个段的描述符中需要规定对自身的访问权限（Access）。所以，在保护模式下，对一个段的描述则包括3方面因素：<code>[Base Address, Limit, Access]</code>，它们加在一起被放在一个64bit(8字节)长的数据结构中，即为<strong>段描述符</strong></p>
-</li>
-</ul>
-<ol>
-<li>基地址Base Address分散在这64bit中，整体是32bit的，即确保了能访问整个4GB内存</li>
-<li>描述符类型标志S，可以描述段类型：系统段，数据段，代码段等</li>
-<li>段限长Limit分散在这64bit中，整体是20bit的，当颗粒度G=0时，Limit值的单位是B，即Limit的范围可以是1B到1MB；当G=1，则Limit值的单位是4KB，即Limit的范围可以是4KB到4GB，即确保了能访问整个4GB内存</li>
-<li>GDTR寄存器48bit，32bit描述了在GDT在内存中的起始地址(GDT存放在内存中的某个任意位置，通过GDTR的这32bit先定位到在内存那里，然后才能定位到具体的段描述符号)；16bit限长（2^16=65536)(8196个段描述符 <em> 每个段描述符是8字节，2^13 </em> 2^3 = 2^16)，所以<font color='red'>16bit限长，13bit索引，8196个段描述符，段描述符大小是8字节，这些都是完美的设计数字</font></li>
-</ol>
-<h4 id="物理内存地址如何确定？"><a href="#物理内存地址如何确定？" class="headerlink" title="物理内存地址如何确定？"></a>物理内存地址如何确定？</h4><p>段寄存器的TI=1的内存访问：</p>
-<ol>
-<li>先从全局描述符表寄存器(GDTR)寄存器(48位,其中前32位base+16位长度)中获得全局描述符表(GDT)基址</li>
-<li>从LDTR寄存器中获取LDT所在段的位置索引(LDTR的高13位)</li>
-<li>根据1，2确定GDT中具体的段描述符，即定位到具体的LDT段基址</li>
-<li>由段选择子的高13位位置索引值再从LDT段中定位到具体LDT段描述符</li>
-<li>段描述符中包含段的基址、限长、优先级等各种属性；这就得到了段的起始地址（基址），再加上偏移地址，就能得到最终的物理内存地址</li>
-</ol>
-<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="疑惑区"><a href="#疑惑区" class="headerlink" title="疑惑区"></a>疑惑区</h3><ol>
-<li>为什么页表中只有20位是存放物理地址的<br>1.因为页目录项和页表项中的都是物理页地址，标准页大小是 4KB，故地址都是 4K 的倍数，也就是地址的低 12位是 0，所以只需要记录物理地址高 20 位就可以</li>
-<li>CPL与DPL<ol>
-<li>CPL：当前特权级（CS低2位）</li>
-<li>DPL：描述符特权级（GDT中）。<br>规则：CPL ≤ DPL可访问。</li>
-</ol>
-</li>
-<li>高特权为何禁低特权代码：<br>CPL &lt; DPL禁止，防内核跑用户恶意代码,中断/门例外。</li>
-<li>一致性代码：<br>CPL ≤ DPL可访问，CPL不变</li>
-<li>将gcc降级<a href="https://blog.csdn.net/weixin_42640948/article/details/123030522">https://blog.csdn.net/weixin_42640948/article/details/123030522</a></li>
-<li>为什么页表创建后我们的低1MB与物理地址是一一对应的关系<br>7.早已经采用了平坦模型，为什么所有用户进程共享几个选择子</li>
-</ol>
-<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ol>
-<li>特权级—-内核态（CPL=0） 运行时，GS 可能指向 DPL=0 的显存段描述符（比如 0xB8000）。<br>返回用户态（CPL=3） 时：<br>如果 GS 仍然指向 DPL=0 的显存段，如果没有检查措施的情况下，用户太是不可以访问GS的吧，因为max(CPL,RPL)&gt;DPL(0),没有检查的话，是将问题延后了，只是用户态不可能有机会访问它</li>
-</ol>
-<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><ol>
-<li>什么是开中断，什么是关中断</li>
-<li>介绍一下#ifdef —#else  #endif结构</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> 宏名</span></span><br><span class="line">    <span class="comment">// 如果 宏名 被定义，则编译这部分代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="comment">// 如果 宏名 没有被定义，则编译这部分代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><ol>
-<li>进程与线程的区别<ol>
-<li>进程=线程+资源</li>
-<li>进程分为单线程进程（只有一个执行流即一个线程）与多线程进程（多个执行流，即多个线程）</li>
-<li>进程占有全部资源，线程要依赖与进程的资源，线程之间的资源可相互读、写</li>
-<li>线程可以看为将进程的一些函数拉出来单独执行</li>
-</ol>
-</li>
-<li>关中断如何实现原子性<ol>
-<li>就是说关中断使得不会被硬件设备中断，这是哪怕是处理器告诉你：哥们你的执行时间到了，该下去了，这时候也不会被中断</li>
-<li>GPT：关中断（CLI 指令）会禁止所有外部硬件中断，即使是处理器的调度机制本身也无法强行打断你的执行</li>
-</ol>
-</li>
-</ol>
-<h1 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h1><ol>
-<li>线程是基于进程实现的</li>
-</ol>
 ]]></content>
   </entry>
 </search>
