@@ -72,6 +72,9 @@
            ...
 </code></pre>);</li>
 <li>INSERT INTO 表名 (字段名, 字段名, …) VALUES (值, 值, …);   插入数据</li>
+<li>ALTER TABLE 表名 ADD [COLUMN] 字段名 数据类型 [其他约束];   添加字段([COLUMN],可选)</li>
+<li>UPDATE 表名 SET 列名 = 新值 WHERE 条件;       修改数据<br>1.例子：<br>单独：    UPDATE products SET money = 20 WHERE id = 1;<pre><code>     UPDATE products SET number = 0 WHERE number IS NULL;  修改值为0的number字段
+</code></pre>批量：<br>UPDATE products<br>SET money = CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</li>
 </ol>
 <hr>
 <h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
@@ -172,8 +175,32 @@
 </table>
 </div>
 <hr>
-<h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><p>CREATE TABLE products(<br>   prod_name VARCHAR(100),<br>   id INT<br>);</p>
-]]></content>
+<h1 id="第四章-检索数据"><a href="#第四章-检索数据" class="headerlink" title="第四章 检索数据"></a>第四章 检索数据</h1><ol>
+<li>SELECT 字段名 FROM 表名;   检索一个或多个列</li>
+<li>SELECT * FROM 表名;        检索所有列</li>
+<li>SELECT DISTINCT 字段名 FROM 表名;   检索不同的列</li>
+<li>SELECT 字段名 FROM 表名 LIMIT 值;   检索指定数量的记录<ol>
+<li>SELECT 字段名 FROM 表名 LIMIT 值 OFFSET 值;   检索指定数量的记录,从第几条开始，几条之后结束</li>
+<li>SELECT 字段名 FROM 表名 WHERE 条件 LIMIT 值,值   检索指定数量的记录,从第几条开始,几条后结束</li>
+</ol>
+</li>
+<li>SELECT 表名.字段名 from 表名;   检索指定表的列</li>
+</ol>
+<h1 id="第五章-排序检索数据"><a href="#第五章-排序检索数据" class="headerlink" title="第五章 排序检索数据"></a>第五章 排序检索数据</h1><ol>
+<li>SELECT 字段名 FROM 表名 ORDER BY 字段名;   检索数据并排序(默认升序)</li>
+<li>SELECT 字段名 FROM 表名 ORDER BY 字段名 DESC;      检索数据并排序(降序)</li>
+<li>SELECT 字段名 FROM 表名 ORDER BY 字段名 ASC,字段名 DESC;   检索数据并排序(多个字段，一个字段一个排序方法)</li>
+<li>SELECT 字段名 FROM 表名 ORDER BY 字段名 DESC LIMIT 值;   检索数据并排序(指定数量)</li>
+</ol>
+<h1 id="第六章-过滤数据"><a href="#第六章-过滤数据" class="headerlink" title="第六章 过滤数据"></a>第六章 过滤数据</h1><ol>
+<li>SELECT 字段名 FROM 表名 WHERE 条件;   检索满足条件的数据<ol>
+<li>条件：&gt;，&lt;，=，!=,&lt;&gt;(不等于),&gt;=,&lt;=</li>
+<li>SELECT 字段名 FROM 表名 WHERE 字段名 BETWEEN 值1 AND 值2;   检索指定范围内的数据</li>
+</ol>
+</li>
+<li>SELECT 字段名 FROM 表名 WHERE 字段名 IS NULL;   检索为空的数据</li>
+</ol>
+<h1 id="第七章-数据过滤"><a href="#第七章-数据过滤" class="headerlink" title="第七章 数据过滤"></a>第七章 数据过滤</h1>]]></content>
   </entry>
   <entry>
     <title>操作系统真相还原</title>
