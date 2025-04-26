@@ -52,7 +52,7 @@
 <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><ol>
 <li><p>登录数据库<br>mysql -u root -p</p>
 </li>
-<li><p>退出数据库<br>exit&#x2F;quit</p>
+<li><p>退出数据库<br>exit/quit</p>
 </li>
 </ol>
 <h1 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h1><ol>
@@ -89,25 +89,33 @@
 </li>
 <li><p>添加字段（可选 [COLUMN]）<br>ALTER TABLE 表名 ADD [COLUMN] 字段名 数据类型 [其他约束];</p>
 </li>
-<li><p>修改数据<br>UPDATE 表名 SET 列名 &#x3D; 新值 WHERE 条件;</p>
+<li><p>修改数据<br>UPDATE 表名 SET 列名 = 新值 WHERE 条件;</p>
 <ol>
-<li><p>单条更新示例<br>UPDATE products SET money &#x3D; 20 WHERE id &#x3D; 1;<br>UPDATE products SET number &#x3D; 0 WHERE number IS NULL;</p>
+<li><p>单条更新示例  </p>
+<blockquote>
+<p>UPDATE products SET money = 20 WHERE id = 1;<br>UPDATE products SET number = 0 WHERE number IS NULL;</p>
+</blockquote>
 </li>
-<li><p>批量更新示例<br>UPDATE products<br>SET money &#x3D; CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
+<li><p>批量更新示例  </p>
+<blockquote>
+<p>UPDATE products<br>SET money = CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
+</blockquote>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><table>
+<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td><code>INT</code> &#x2F; <code>INTEGER</code></td>
+<tbody>
+<tr>
+<td><code>INT</code> / <code>INTEGER</code></td>
 <td>整数类型，常用于 ID、数量等。可加 <code>UNSIGNED</code> 表示非负。</td>
 </tr>
 <tr>
@@ -119,7 +127,7 @@
 <td>用于非常大的整数，如用户量巨大的系统。</td>
 </tr>
 <tr>
-<td><code>FLOAT</code> &#x2F; <code>DOUBLE</code></td>
+<td><code>FLOAT</code> / <code>DOUBLE</code></td>
 <td>浮点数，适合温度、速度等有小数的值。</td>
 </tr>
 <tr>
@@ -154,16 +162,20 @@
 <td><code>BOOLEAN</code></td>
 <td>布尔类型，<code>TRUE</code> 或 <code>FALSE</code>，有些数据库用 <code>1/0</code>。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
-<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><table>
+<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>约束关键字</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>PRIMARY KEY</code></td>
 <td>主键，唯一标识每一行记录，不能重复也不能为空。</td>
 </tr>
@@ -187,20 +199,41 @@
 <td><code>FOREIGN KEY</code></td>
 <td>外键，用于关联其他表的主键，建立表之间的关系。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><ol>
-<li><p>检索一个或多个列<br>SELECT 字段名 FROM 表名;</p>
+<li>检索一个或多个列<br>SELECT 字段名 FROM 表名;<blockquote>
+<p>SELECT prod_name<br>FROM products;</p>
+</blockquote>
 </li>
+</ol>
+<ol>
 <li><p>检索所有列<br>SELECT * FROM 表名;</p>
+<blockquote>
+<p>SELECT *<br>FROM products;</p>
+</blockquote>
 </li>
 <li><p>检索不同的列<br>SELECT DISTINCT 字段名 FROM 表名;</p>
+<blockquote>
+<p>SELECT DISTINCT prod_name<br>FROM products;</p>
+</blockquote>
 </li>
 <li><p>检索指定数量的记录<br>SELECT 字段名 FROM 表名 LIMIT 值;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>LIMIT 3;</p>
+</blockquote>
 <ol>
 <li><p>从指定偏移开始检索<br>SELECT 字段名 FROM 表名 LIMIT 值 OFFSET 值;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>LIMIT 3 OFFSET 2;</p>
+</blockquote>
 </li>
 <li><p>WHERE 条件加偏移检索<br>SELECT 字段名 FROM 表名 WHERE 条件 LIMIT 偏移,数量;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>LIMIT 3,2;</p>
+</blockquote>
 </li>
 </ol>
 </li>
@@ -209,55 +242,100 @@
 </ol>
 <h1 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h1><ol>
 <li><p>默认升序排序<br>SELECT 字段名 FROM 表名 ORDER BY 字段名;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>ORDER BY money;</p>
+</blockquote>
 </li>
 <li><p>降序排序<br>SELECT 字段名 FROM 表名 ORDER BY 字段名 DESC;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>ORDER BY money DESC;</p>
+</blockquote>
 </li>
 <li><p>多字段混合排序<br>SELECT 字段名 FROM 表名 ORDER BY 字段名 ASC, 字段名 DESC;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>ORDER BY money ASC, number DESC;</p>
+</blockquote>
 </li>
 <li><p>排序并限制数量<br>SELECT 字段名 FROM 表名 ORDER BY 字段名 DESC LIMIT 值;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>ORDER BY money DESC<br>LIMIT 3;</p>
+</blockquote>
 </li>
 </ol>
 <h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><ol>
 <li><p>检索满足条件的数据<br>SELECT 字段名 FROM 表名 WHERE 条件;</p>
 <ul>
 <li><p>支持运算符：<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>!=</code>、<code>&lt;&gt;</code>、<code>&gt;=</code>、<code>&lt;=</code></p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE money = 20;</p>
+</blockquote>
 </li>
 <li><p>范围检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 BETWEEN 值1 AND 值2;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE money BETWEEN 10 AND 20;</p>
+</blockquote>
 </li>
 </ul>
 </li>
 <li><p>检索为空的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 IS NULL;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE nickname IS NULL;</p>
+</blockquote>
 </li>
 </ol>
 <h1 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h1><ol>
 <li><p>满足所有条件（AND）<br>SELECT 字段名 FROM 表名 WHERE 条件1 AND 条件2;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ AND money = 20;</p>
+</blockquote>
 </li>
 <li><p>满足任一条件（OR）<br>SELECT 字段名 FROM 表名 WHERE 条件1 OR 条件2;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ OR money = 20;</p>
+</blockquote>
 </li>
 </ol>
 <blockquote>
 <p>注意：AND 优先级高于 OR</p>
 </blockquote>
-<ol start="3">
+<ol>
 <li><p>指定值检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 IN (值1, 值2, …);</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name IN (‘shangping1’, ‘shangping2’);</p>
+</blockquote>
 </li>
 <li><p>排除指定值<br>SELECT 字段名 FROM 表名 WHERE 字段名 NOT IN (值1, 值2, …);</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name NOT IN (‘shangping1’);</p>
+</blockquote>
 </li>
 </ol>
 <h1 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h1><ol>
 <li><p><code>%</code>：匹配任意数量的字符</p>
 <ol>
 <li><p>检索以指定值开头的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘值%’;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name LIKE ‘shangping%’;</p>
+</blockquote>
 </li>
 <li><p>检索以指定值结尾的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘%值’;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name LIKE ‘%ping1’;</p>
+</blockquote>
 </li>
 <li><p>检索包含指定值的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘%值%’;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name LIKE ‘%ping%’;</p>
+</blockquote>
 </li>
 </ol>
 </li>
 <li><p><code>_</code>：匹配单个字符</p>
 <ol>
 <li><p>检索以指定值开头的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘值_’;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod<em>name LIKE ‘shangping</em>‘;</p>
+</blockquote>
 </li>
 <li><p>同上<br>（与上面命令一致，只匹配单个字符）</p>
 </li>
@@ -265,18 +343,40 @@
 </li>
 </ol>
 <h1 id="使用正则表达式进行搜索"><a href="#使用正则表达式进行搜索" class="headerlink" title="使用正则表达式进行搜索"></a>使用正则表达式进行搜索</h1><ol>
-<li><code>REGEXP</code>：使用正则表达式进行搜索<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘正则表达式’;</li>
-<li>‘.’: 匹配任意一个字符<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘.shanghai.’;</li>
-<li>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京</li>
-<li>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3</li>
-<li>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;   匹配1到8之间的数字</li>
-<li>特殊字符<ol>
-<li>‘.’:\.<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘\.’;       匹配包含.的表项</li>
-<li>\:\</li>
+<li><p><code>REGEXP</code>：使用正则表达式进行搜索<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘正则表达式’;</p>
+</li>
+<li><p>‘.’: 匹配任意一个字符<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘.shanghai.’;</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping.’;</p>
+</blockquote>
+</li>
+<li>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping2|shangping1’;</p>
+</blockquote>
+</li>
+<li>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[123]’;</p>
+</blockquote>
+</li>
+<li><p>[1-8]: 匹配1到8之间的数字（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[1-8]’;   匹配1到8之间的数字</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[1-8]’;</p>
+</blockquote>
+</li>
+<li><p>特殊字符</p>
+<ol>
+<li><p>‘.’:\\.<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘\.’;       匹配包含.的表项</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP “\\.”;</p>
+</blockquote>
+</li>
+<li><p>\\\:\</p>
+</li>
 <li>匹配空白元字符</li>
 </ol>
 </li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -284,7 +384,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>\f</td>
 <td>换页</td>
 </tr>
@@ -304,10 +405,13 @@
 <td>\v</td>
 <td>纵向制表</td>
 </tr>
-</tbody></table>
-<ol start="4">
+</tbody>
+</table>
+</div>
+<ol>
 <li>匹配字符类</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -315,7 +419,8 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>[:alnum:]</td>
 <td>任意字母和数字（同[a-zA-Z0-9]）</td>
 </tr>
@@ -363,10 +468,13 @@
 <td>[:xdigit:]</td>
 <td>任意十六进制数字（同[a-fA-F0-9]）</td>
 </tr>
-</tbody></table>
-<ol start="5">
+</tbody>
+</table>
+</div>
+<ol>
 <li>重复元字符</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -374,7 +482,8 @@
 <th>说  明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>*</td>
 <td>0个或多个匹配</td>
 </tr>
@@ -398,10 +507,13 @@
 <td>{n,m}</td>
 <td>匹配数目的范围（m不超过255）</td>
 </tr>
-</tbody></table>
-<ol start="6">
+</tbody>
+</table>
+</div>
+<ol>
 <li>定位元字符</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -409,7 +521,8 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>^</td>
 <td>文本的开始</td>
 </tr>
@@ -425,11 +538,305 @@
 <td>[[:&gt;:]]</td>
 <td>词的结尾</td>
 </tr>
-</tbody></table>
-<ol start="7">
-<li>例子<br>   SELECT *<br>   FROM products<br>   WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
+</tbody>
+</table>
+</div>
+<ol>
+<li>例子<br>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
 </ol>
-<h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1>]]></content>
+<h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1><ol>
+<li>Concat 函数：连接字符串<br>SELECT Concat(字段1，’(‘,字段2,’)’) FROM 表名;  检索结果为字段1（字段2）<blockquote>
+<p>SELECT Concat(prod_name,’(‘,prod_price,’)’) FROM products;</p>
+</blockquote>
+</li>
+<li>AS 关键字：创建计算字段<br>SELECT Concat(字段1，’(‘,字段2,’)’) AS 字段 FROM 表名;  检索结果为字段：字段1（字段2）<blockquote>
+<p>SELECT Concat(prod_name,’(‘,prod_price,’)’) AS sale_price FROM products;</p>
+</blockquote>
+</li>
+<li>算法计算<br>SELECT 字段1, 字段2, 字段1 +-*/ 字段2 AS 字段3 FROM 表名;   检索结果为字段1，字段2,字段3:字段1 + 字段2<blockquote>
+<p>SELECT prod_name, prod_price, prod_price * 1.2 AS sale_price FROM products;</p>
+</blockquote>
+</li>
+<li>奇技淫巧<ol>
+<li>获取当前时间<br>SELECT Now(); </li>
+</ol>
+</li>
+</ol>
+<h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><ol>
+<li>常用的文本处理函数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left()</td>
+<td>返回串左边的字符</td>
+</tr>
+<tr>
+<td>Length()</td>
+<td>返回串的长度</td>
+</tr>
+<tr>
+<td>Locate()</td>
+<td>找出串的一个子串</td>
+</tr>
+<tr>
+<td>Lower()</td>
+<td>将串转换为小写</td>
+</tr>
+<tr>
+<td>LTrim()</td>
+<td>去掉串左边的空格</td>
+</tr>
+<tr>
+<td>Right()</td>
+<td>返回串右边的字符</td>
+</tr>
+<tr>
+<td>RTrim()</td>
+<td>去掉串右边的空格</td>
+</tr>
+<tr>
+<td>Soundex()</td>
+<td>返回串的SOUNDEX值</td>
+</tr>
+<tr>
+<td>SubString()</td>
+<td>返回子串的字符</td>
+</tr>
+<tr>
+<td>Upper()</td>
+<td>将串转换为大写</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>常用日期和时间处理函数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AddDate()</td>
+<td>增加一个日期（天、周等）</td>
+</tr>
+<tr>
+<td>AddTime()</td>
+<td>增加一个时间（时、分等）</td>
+</tr>
+<tr>
+<td>CurDate()</td>
+<td>返回当前日期</td>
+</tr>
+<tr>
+<td>CurTime()</td>
+<td>返回当前时间</td>
+</tr>
+<tr>
+<td>Date()</td>
+<td>返回日期时间的日期部分</td>
+</tr>
+<tr>
+<td>DateDiff()</td>
+<td>计算两个日期之差</td>
+</tr>
+<tr>
+<td>Date_Add()</td>
+<td>高度灵活的日期运算函数</td>
+</tr>
+<tr>
+<td>Date_Format()</td>
+<td>返回一个格式化的日期或时间串</td>
+</tr>
+<tr>
+<td>Day()</td>
+<td>返回一个日期的天数部分</td>
+</tr>
+<tr>
+<td>DayOfWeek()</td>
+<td>对于一个日期，返回对应的星期几</td>
+</tr>
+<tr>
+<td>Hour()</td>
+<td>返回一个时间的小时部分</td>
+</tr>
+<tr>
+<td>Minute()</td>
+<td>返回一个时间的分钟部分</td>
+</tr>
+<tr>
+<td>Month()</td>
+<td>返回一个日期的月份部分</td>
+</tr>
+<tr>
+<td>Now()</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>Second()</td>
+<td>返回一个时间的秒部分</td>
+</tr>
+<tr>
+<td>Time()</td>
+<td>返回一个日期时间的时间部分</td>
+</tr>
+<tr>
+<td>Year()</td>
+<td>返回一个日期的年份部分</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>常用数值处理函数</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abs()</td>
+<td>返回一个数的绝对值</td>
+</tr>
+<tr>
+<td>Cos()</td>
+<td>返回一个角度的余弦</td>
+</tr>
+<tr>
+<td>Exp()</td>
+<td>返回一个数的指数值</td>
+</tr>
+<tr>
+<td>Mod()</td>
+<td>返回除操作的余数</td>
+</tr>
+<tr>
+<td>Pi()</td>
+<td>返回圆周率</td>
+</tr>
+<tr>
+<td>Rand()</td>
+<td>返回一个随机数</td>
+</tr>
+<tr>
+<td>Sin()</td>
+<td>返回一个角度的正弦</td>
+</tr>
+<tr>
+<td>Sqrt()</td>
+<td>返回一个数的平方根</td>
+</tr>
+<tr>
+<td>Tan()</td>
+<td>返回一个角度的正切</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><ol>
+<li>AVG 函数：计算平均值<br>SELECT AVG(字段) FROM 表名;<blockquote>
+<p>SELECT AVG(prod_price) FROM products;</p>
+</blockquote>
+</li>
+<li>COUNT 函数：计算行数<br>SELECT COUNT(字段) FROM 表名; <blockquote>
+<p>SELECT COUNT(prod_name) FROM products;</p>
+</blockquote>
+</li>
+<li>MAX 函数：计算最大值<br>SELECT MAX(字段) FROM 表名; <blockquote>
+<p>SELECT MAX(prod_price) FROM products;</p>
+</blockquote>
+</li>
+<li>MIN 函数：计算最小值<br>SELECT MIN(字段) FROM 表名;<blockquote>
+<p>SELECT MIN(prod_price) FROM products;</p>
+</blockquote>
+</li>
+<li>SUM 函数：计算总和<br>SELECT SUM(字段) FROM 表名;<blockquote>
+<p>SELECT SUM(money*number) AS total<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+</blockquote>
+</li>
+<li>聚焦不同的值<br>SELECT DISTINCT 字段 FROM 表名;<blockquote>
+<p>SELECT AVG(DISTINCT id) AS ans<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h1><ol>
+<li>GROUP BY 语句：对数据进行分组<blockquote>
+<p>SELECT prod_name ,COUNT(*) AS ans<br>FROM products<br>GROUP BY prod_name</p>
+</blockquote>
+</li>
+<li>HAVING 语句：对分组数据进行过滤<blockquote>
+<p>SELECT prod_name ,COUNT(<em>) AS ans<br>FROM products<br>GROUP BY prod_name<br>HAVING COUNT(</em>) &gt; 1;</p>
+</blockquote>
+</li>
+<li>SELECT子句顺序</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>子 句</th>
+<th>说 明</th>
+<th>是否必须使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT</td>
+<td>要返回的列或表达式</td>
+<td>是</td>
+</tr>
+<tr>
+<td>FROM</td>
+<td>从中检索数据的表</td>
+<td>仅在从表选择数据时使用</td>
+</tr>
+<tr>
+<td>WHERE</td>
+<td>行级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>GROUP BY</td>
+<td>分组说明</td>
+<td>仅在按组计算聚集时使用</td>
+</tr>
+<tr>
+<td>HAVING</td>
+<td>组级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ORDER BY</td>
+<td>输出排序顺序</td>
+<td>否</td>
+</tr>
+<tr>
+<td>LIMIT</td>
+<td>要检索的行数</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h1>]]></content>
   </entry>
   <entry>
     <title>操作系统真相还原</title>
