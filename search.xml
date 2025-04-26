@@ -52,7 +52,7 @@
 <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><ol>
 <li><p>登录数据库<br>mysql -u root -p</p>
 </li>
-<li><p>退出数据库<br>exit/quit</p>
+<li><p>退出数据库<br>exit&#x2F;quit</p>
 </li>
 </ol>
 <h1 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h1><ol>
@@ -89,27 +89,25 @@
 </li>
 <li><p>添加字段（可选 [COLUMN]）<br>ALTER TABLE 表名 ADD [COLUMN] 字段名 数据类型 [其他约束];</p>
 </li>
-<li><p>修改数据<br>UPDATE 表名 SET 列名 = 新值 WHERE 条件;</p>
+<li><p>修改数据<br>UPDATE 表名 SET 列名 &#x3D; 新值 WHERE 条件;</p>
 <ol>
-<li><p>单条更新示例<br>UPDATE products SET money = 20 WHERE id = 1;<br>UPDATE products SET number = 0 WHERE number IS NULL;</p>
+<li><p>单条更新示例<br>UPDATE products SET money &#x3D; 20 WHERE id &#x3D; 1;<br>UPDATE products SET number &#x3D; 0 WHERE number IS NULL;</p>
 </li>
-<li><p>批量更新示例<br>UPDATE products<br>SET money = CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
+<li><p>批量更新示例<br>UPDATE products<br>SET money &#x3D; CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
-<table>
+<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><code>INT</code> / <code>INTEGER</code></td>
+<tbody><tr>
+<td><code>INT</code> &#x2F; <code>INTEGER</code></td>
 <td>整数类型，常用于 ID、数量等。可加 <code>UNSIGNED</code> 表示非负。</td>
 </tr>
 <tr>
@@ -121,7 +119,7 @@
 <td>用于非常大的整数，如用户量巨大的系统。</td>
 </tr>
 <tr>
-<td><code>FLOAT</code> / <code>DOUBLE</code></td>
+<td><code>FLOAT</code> &#x2F; <code>DOUBLE</code></td>
 <td>浮点数，适合温度、速度等有小数的值。</td>
 </tr>
 <tr>
@@ -156,20 +154,16 @@
 <td><code>BOOLEAN</code></td>
 <td>布尔类型，<code>TRUE</code> 或 <code>FALSE</code>，有些数据库用 <code>1/0</code>。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><div class="table-container">
-<table>
+<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><table>
 <thead>
 <tr>
 <th>约束关键字</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>PRIMARY KEY</code></td>
 <td>主键，唯一标识每一行记录，不能重复也不能为空。</td>
 </tr>
@@ -193,9 +187,7 @@
 <td><code>FOREIGN KEY</code></td>
 <td>外键，用于关联其他表的主键，建立表之间的关系。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><ol>
 <li><p>检索一个或多个列<br>SELECT 字段名 FROM 表名;</p>
@@ -246,7 +238,7 @@
 <blockquote>
 <p>注意：AND 优先级高于 OR</p>
 </blockquote>
-<ol>
+<ol start="3">
 <li><p>指定值检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 IN (值1, 值2, …);</p>
 </li>
 <li><p>排除指定值<br>SELECT 字段名 FROM 表名 WHERE 字段名 NOT IN (值1, 值2, …);</p>
@@ -277,17 +269,165 @@
 <li>‘.’: 匹配任意一个字符<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘.shanghai.’;</li>
 <li>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京</li>
 <li>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3</li>
-<li>[1-8]: 匹配1到8之间的数字（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[1-8]’;   匹配1到8之间的数字</li>
+<li>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;   匹配1到8之间的数字</li>
 <li>特殊字符<ol>
 <li>‘.’:\.<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘\.’;       匹配包含.的表项</li>
-<li>\\:\</li>
-<li>匹配空白元字符<br>| 元字符 | 说明 |<br>| —- | —- |<br>| \f | 换页 |<br>| \n | 换行 |<br>| \r | 回车 |<br>| \t | 制表 |<br>| \v | 纵向制表 |</li>
-<li>匹配字符类<br>| 类 | 说 明 |<br>| —- | —- |<br>| [:alnum:] | 任意字母和数字（同[a-zA-Z0-9]） |<br>| [:alpha:] | 任意字母（同[a-zA-Z]） |<br>| [:blank:] | 空格和制表（同[\t]） |<br>| [:cntrl:] | ASCII控制字符（ASCII 0到31和127） |<br>| [:digit:] | 任意数字（同[0-9]） |<br>| [:graph:] | 与[:print:]相同，但不包括空格 |<br>| [:lower:] | 任意小写字母（同[a-z]） |<br>| [:print:] | 任意可打印字符 |<br>| [:punct:] | 既不在[:alnum:]又不在[:cntrl:]中的任意字符 |<br>| [:space:] | 包括空格在内的任意空白字符（同[\f\n\r\t\v]） |<br>| [:upper:] | 任意大写字母（同[A-Z]） |<br>| [:xdigit:] | 任意十六进制数字（同[a-fA-F0-9]） |</li>
-<li>重复元字符<br>| 元字符 | 说  明 |<br>| —- | —- |<br>| * | 0个或多个匹配 |<br>| + | 1个或多个匹配（等于{1,}） |<br>| ? | 0个或1个匹配（等于{0,1}） |<br>| {n} | 指定数目的匹配 |<br>| {n,} | 不少于指定数目的匹配 |<br>| {n,m} | 匹配数目的范围（m不超过255） |</li>
-<li>定位元字符<br>| 元字符 | 说 明 |<br>| —- | —- |<br>| ^ | 文本的开始 |<br>| $ | 文本的结尾 |<br>| [[:&lt;:]] | 词的开始 |<br>| [[:&gt;:]] | 词的结尾 |</li>
-<li>例子<br>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
+<li>\:\</li>
+<li>匹配空白元字符</li>
 </ol>
 </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>纵向制表</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>匹配字符类</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[:alnum:]</td>
+<td>任意字母和数字（同[a-zA-Z0-9]）</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>任意字母（同[a-zA-Z]）</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>空格和制表（同[\t]）</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>ASCII控制字符（ASCII 0到31和127）</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>任意数字（同[0-9]）</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>与[:print:]相同，但不包括空格</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>任意小写字母（同[a-z]）</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>任意可打印字符</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>既不在[:alnum:]又不在[:cntrl:]中的任意字符</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>包括空格在内的任意空白字符（同[\f\n\r\t\v]）</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>任意大写字母（同[A-Z]）</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>任意十六进制数字（同[a-fA-F0-9]）</td>
+</tr>
+</tbody></table>
+<ol start="5">
+<li>重复元字符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>0个或多个匹配</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1个或多个匹配（等于{1,}）</td>
+</tr>
+<tr>
+<td>?</td>
+<td>0个或1个匹配（等于{0,1}）</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>指定数目的匹配</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>不少于指定数目的匹配</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配数目的范围（m不超过255）</td>
+</tr>
+</tbody></table>
+<ol start="6">
+<li>定位元字符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>文本的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>文本的结尾</td>
+</tr>
+<tr>
+<td>[[:&lt;:]]</td>
+<td>词的开始</td>
+</tr>
+<tr>
+<td>[[:&gt;:]]</td>
+<td>词的结尾</td>
+</tr>
+</tbody></table>
+<ol start="7">
+<li>例子<br>   SELECT *<br>   FROM products<br>   WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
 </ol>
 <h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1>]]></content>
   </entry>
