@@ -3,7 +3,7 @@
   <entry>
     <title>workflow</title>
     <url>/uncategorized/plan/plan/</url>
-    <content><![CDATA[<h2 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h2><p>Workflow的src/kernel目录里，包含了以下独立的模块，基本都是C和简单C++语法实现的，没有复杂的语法，每一个模块都很小，都可以单独拿出来学习：</p>
+    <content><![CDATA[<h2 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h2><p>Workflow的src&#x2F;kernel目录里，包含了以下独立的模块，基本都是C和简单C++语法实现的，没有复杂的语法，每一个模块都很小，都可以单独拿出来学习：</p>
 <p>poller,可以学习如何使用epoll<br>thrdpool,经典线程池实现<br>msgqueue,消息队列实现<br>Communicator,异步网络通信器，包括了基本的目标管理和负载均衡<br>Executor,包含计算调度算法的执行器<br>IO_Service,异步文件IO</p>
 ]]></content>
   </entry>
@@ -52,7 +52,7 @@
 <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><ol>
 <li><p>登录数据库<br>mysql -u root -p</p>
 </li>
-<li><p>退出数据库<br>exit/quit</p>
+<li><p>退出数据库<br>exit&#x2F;quit</p>
 </li>
 </ol>
 <h1 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h1><ol>
@@ -87,35 +87,41 @@
 </li>
 <li><p>插入数据<br>INSERT INTO 表名 (字段名, 字段名, …) VALUES (值, 值, …);</p>
 </li>
-<li><p>添加字段（可选 [COLUMN]）<br>ALTER TABLE 表名 ADD [COLUMN] 字段名 数据类型 [其他约束];</p>
+<li><p>添加字段（可选 COLUMN,表示添加新的字段）<br>ALTER TABLE 表名 ADD COLUMN 字段名 数据类型 [其他约束];</p>
+<blockquote>
+<p>ALTER TABLE products ADD number INT;</p>
+</blockquote>
 </li>
-<li><p>修改数据<br>UPDATE 表名 SET 列名 = 新值 WHERE 条件;</p>
+<li><p>添加约束（CONSTRAINT可选,表示添加约束）<br>ALTER TABLE 表名 ADD CONSTRAINT 约束名 约束类型 (字段名);</p>
+<blockquote>
+<p>ALTER TABLE products ADD PRIMARY KEY (prod_id);</p>
+</blockquote>
+</li>
+<li><p>修改数据<br>UPDATE 表名 SET 列名 &#x3D; 新值 WHERE 条件;</p>
 <ol>
 <li><p>单条更新示例  </p>
 <blockquote>
-<p>UPDATE products SET money = 20 WHERE id = 1;<br>UPDATE products SET number = 0 WHERE number IS NULL;</p>
+<p>UPDATE products SET money &#x3D; 20 WHERE id &#x3D; 1;<br>UPDATE products SET number &#x3D; 0 WHERE number IS NULL;</p>
 </blockquote>
 </li>
 <li><p>批量更新示例  </p>
 <blockquote>
-<p>UPDATE products<br>SET money = CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
+<p>UPDATE products<br>SET money &#x3D; CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
 </blockquote>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
-<table>
+<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><code>INT</code> / <code>INTEGER</code></td>
+<tbody><tr>
+<td><code>INT</code> &#x2F; <code>INTEGER</code></td>
 <td>整数类型，常用于 ID、数量等。可加 <code>UNSIGNED</code> 表示非负。</td>
 </tr>
 <tr>
@@ -127,7 +133,7 @@
 <td>用于非常大的整数，如用户量巨大的系统。</td>
 </tr>
 <tr>
-<td><code>FLOAT</code> / <code>DOUBLE</code></td>
+<td><code>FLOAT</code> &#x2F; <code>DOUBLE</code></td>
 <td>浮点数，适合温度、速度等有小数的值。</td>
 </tr>
 <tr>
@@ -162,20 +168,16 @@
 <td><code>BOOLEAN</code></td>
 <td>布尔类型，<code>TRUE</code> 或 <code>FALSE</code>，有些数据库用 <code>1/0</code>。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><div class="table-container">
-<table>
+<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><table>
 <thead>
 <tr>
 <th>约束关键字</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>PRIMARY KEY</code></td>
 <td>主键，唯一标识每一行记录，不能重复也不能为空。</td>
 </tr>
@@ -199,20 +201,23 @@
 <td><code>FOREIGN KEY</code></td>
 <td>外键，用于关联其他表的主键，建立表之间的关系。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><ol>
-<li>检索一个或多个列<br>SELECT 字段名 FROM 表名;<blockquote>
+<li><p>检索一个或多个列<br>SELECT 字段名 FROM 表名;</p>
+<blockquote>
 <p>SELECT prod_name<br>FROM products;</p>
 </blockquote>
 </li>
-</ol>
-<ol>
 <li><p>检索所有列<br>SELECT * FROM 表名;</p>
 <blockquote>
 <p>SELECT *<br>FROM products;</p>
+</blockquote>
+</li>
+<li><p>笛卡尔积分</p>
+<p>SELECT 字段名 FROM 表名1, 表名2;</p>
+<blockquote>
+<p>SELECT *<br>FROM products, categories;</p>
 </blockquote>
 </li>
 <li><p>检索不同的列<br>SELECT DISTINCT 字段名 FROM 表名;</p>
@@ -267,7 +272,7 @@
 <ul>
 <li><p>支持运算符：<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>!=</code>、<code>&lt;&gt;</code>、<code>&gt;=</code>、<code>&lt;=</code></p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE money &#x3D; 20;</p>
 </blockquote>
 </li>
 <li><p>范围检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 BETWEEN 值1 AND 值2;</p>
@@ -286,19 +291,19 @@
 <h1 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h1><ol>
 <li><p>满足所有条件（AND）<br>SELECT 字段名 FROM 表名 WHERE 条件1 AND 条件2;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ AND money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’ AND money &#x3D; 20;</p>
 </blockquote>
 </li>
 <li><p>满足任一条件（OR）<br>SELECT 字段名 FROM 表名 WHERE 条件1 OR 条件2;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ OR money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’ OR money &#x3D; 20;</p>
 </blockquote>
 </li>
 </ol>
 <blockquote>
 <p>注意：AND 优先级高于 OR</p>
 </blockquote>
-<ol>
+<ol start="3">
 <li><p>指定值检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 IN (值1, 值2, …);</p>
 <blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name IN (‘shangping1’, ‘shangping2’);</p>
@@ -334,7 +339,7 @@
 <ol>
 <li><p>检索以指定值开头的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘值_’;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod<em>name LIKE ‘shangping</em>‘;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name LIKE ‘shangping_’;</p>
 </blockquote>
 </li>
 <li><p>同上<br>（与上面命令一致，只匹配单个字符）</p>
@@ -350,17 +355,19 @@
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping.’;</p>
 </blockquote>
 </li>
-<li>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京<blockquote>
+<li><p>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京</p>
+<blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping2|shangping1’;</p>
 </blockquote>
 </li>
-<li>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3<blockquote>
+<li><p>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3</p>
+<blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[123]’;</p>
 </blockquote>
 </li>
-<li><p>[1-8]: 匹配1到8之间的数字（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[1-8]’;   匹配1到8之间的数字</p>
+<li><p>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;   匹配1到8之间的数字</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[1-8]’;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;</p>
 </blockquote>
 </li>
 <li><p>特殊字符</p>
@@ -372,11 +379,11 @@
 </li>
 <li><p>\\\:\</p>
 </li>
-<li>匹配空白元字符</li>
+<li><p>匹配空白元字符</p>
+</li>
 </ol>
 </li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -384,8 +391,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>\f</td>
 <td>换页</td>
 </tr>
@@ -405,13 +411,10 @@
 <td>\v</td>
 <td>纵向制表</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="4">
 <li>匹配字符类</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -419,8 +422,7 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>[:alnum:]</td>
 <td>任意字母和数字（同[a-zA-Z0-9]）</td>
 </tr>
@@ -468,13 +470,10 @@
 <td>[:xdigit:]</td>
 <td>任意十六进制数字（同[a-fA-F0-9]）</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="5">
 <li>重复元字符</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -482,8 +481,7 @@
 <th>说  明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>*</td>
 <td>0个或多个匹配</td>
 </tr>
@@ -507,13 +505,10 @@
 <td>{n,m}</td>
 <td>匹配数目的范围（m不超过255）</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="6">
 <li>定位元字符</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -521,8 +516,7 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>^</td>
 <td>文本的开始</td>
 </tr>
@@ -538,11 +532,9 @@
 <td>[[:&gt;:]]</td>
 <td>词的结尾</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
-<li>例子<br>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
+</tbody></table>
+<ol start="7">
+<li>例子<br>   SELECT *<br>   FROM products<br>   WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
 </ol>
 <h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1><ol>
 <li>Concat 函数：连接字符串<br>SELECT Concat(字段1，’(‘,字段2,’)’) FROM 表名;  检索结果为字段1（字段2）<blockquote>
@@ -553,19 +545,18 @@
 <p>SELECT Concat(prod_name,’(‘,prod_price,’)’) AS sale_price FROM products;</p>
 </blockquote>
 </li>
-<li>算法计算<br>SELECT 字段1, 字段2, 字段1 +-*/ 字段2 AS 字段3 FROM 表名;   检索结果为字段1，字段2,字段3:字段1 + 字段2<blockquote>
+<li>算法计算<br>SELECT 字段1, 字段2, 字段1 +-*&#x2F; 字段2 AS 字段3 FROM 表名;   检索结果为字段1，字段2,字段3:字段1 + 字段2<blockquote>
 <p>SELECT prod_name, prod_price, prod_price * 1.2 AS sale_price FROM products;</p>
 </blockquote>
 </li>
 <li>奇技淫巧<ol>
-<li>获取当前时间<br>SELECT Now(); </li>
+<li>获取当前时间<br>SELECT Now();</li>
 </ol>
 </li>
 </ol>
 <h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><ol>
 <li>常用的文本处理函数</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -573,8 +564,7 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Left()</td>
 <td>返回串左边的字符</td>
 </tr>
@@ -614,13 +604,10 @@
 <td>Upper()</td>
 <td>将串转换为大写</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="2">
 <li>常用日期和时间处理函数</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -628,8 +615,7 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>AddDate()</td>
 <td>增加一个日期（天、周等）</td>
 </tr>
@@ -697,13 +683,10 @@
 <td>Year()</td>
 <td>返回一个日期的年份部分</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="3">
 <li>常用数值处理函数</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -711,8 +694,7 @@
 <th>说 明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Abs()</td>
 <td>返回一个数的绝对值</td>
 </tr>
@@ -748,9 +730,7 @@
 <td>Tan()</td>
 <td>返回一个角度的正切</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><ol>
 <li>AVG 函数：计算平均值<br>SELECT AVG(字段) FROM 表名;<blockquote>
 <p>SELECT AVG(prod_price) FROM products;</p>
@@ -769,26 +749,27 @@
 </blockquote>
 </li>
 <li>SUM 函数：计算总和<br>SELECT SUM(字段) FROM 表名;<blockquote>
-<p>SELECT SUM(money*number) AS total<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+<p>SELECT SUM(money*number) AS total<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’;</p>
 </blockquote>
 </li>
 <li>聚焦不同的值<br>SELECT DISTINCT 字段 FROM 表名;<blockquote>
-<p>SELECT AVG(DISTINCT id) AS ans<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+<p>SELECT AVG(DISTINCT id) AS ans<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’;</p>
 </blockquote>
 </li>
 </ol>
 <h1 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h1><ol>
-<li>GROUP BY 语句：对数据进行分组<blockquote>
-<p>SELECT prod_name ,COUNT(*) AS ans<br>FROM products<br>GROUP BY prod_name</p>
-</blockquote>
-</li>
-<li>HAVING 语句：对分组数据进行过滤<blockquote>
-<p>SELECT prod_name ,COUNT(<em>) AS ans<br>FROM products<br>GROUP BY prod_name<br>HAVING COUNT(</em>) &gt; 1;</p>
-</blockquote>
-</li>
+<li>GROUP BY 语句：对数据进行分组</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT prod_name ,COUNT(*) AS ans</span><br><span class="line">FROM products</span><br><span class="line">GROUP BY prod_name;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>HAVING 语句：对分组数据进行过滤</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT prod_name ,COUNT(*) AS ans</span><br><span class="line">FROM products</span><br><span class="line">GROUP BY prod_name</span><br><span class="line">HAVING COUNT(*) &gt; 1;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
 <li>SELECT子句顺序</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -797,8 +778,7 @@
 <th>是否必须使用</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>SELECT</td>
 <td>要返回的列或表达式</td>
 <td>是</td>
@@ -833,10 +813,78 @@
 <td>要检索的行数</td>
 <td>否</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h1 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h1>]]></content>
+</tbody></table>
+<h1 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h1><ol>
+<li>利用子查询进行过滤</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT cust_contact, cust_email</span><br><span class="line">FROM customers</span><br><span class="line">WHERE cust_id IN (SELECT cust_id</span><br><span class="line">                  FROM orders</span><br><span class="line">                  WHERE order_num IN (SELECT order_num</span><br><span class="line">                                       FROM orderitems</span><br><span class="line">                                       WHERE prod_id = &#x27;P001&#x27;</span><br><span class="line"> ));</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>作为计算字段使用子查询</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   SELECT cust_name, cust_state, (SELECT COUNT(*)</span><br><span class="line">                                 FROM orders</span><br><span class="line">                                 WHERE orders.cust_id = customers.cust_id) AS orders</span><br><span class="line">FROM customers</span><br><span class="line">ORDER BY cust_name;</span><br></pre></td></tr></table></figure>
+
+<h1 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h1><ol>
+<li>等值联结</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT vend_name, prod_name, prod_price</span><br><span class="line">FROM vendors, products</span><br><span class="line">WHERE vendors.vend_id = products.vend_id</span><br><span class="line">ORDER BY vend_name, prod_name;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>笛卡尔积<br>SELECT * FROM 表名1, 表名2;    笛卡尔积<blockquote>
+<p>SELECT * FROM products, orderitems;</p>
+</blockquote>
+</li>
+<li>INNER JOIN:内联联结<br>SELECT 字段 FROM 表名1 INNER JOIN 表名2 ON 表名1.字段 &#x3D; 表名2.字段;<blockquote>
+<p>SELECT vend_name, prod_name, prod_price<br>FROM vendors INNER JOIN products<br>ON vendors.vend_id &#x3D; products.vend_id;</p>
+</blockquote>
+</li>
+<li>联结多个表&#x3D;&#x3D;上一章的利用子查询进行过滤<blockquote>
+<p>SELECT cust_name, cust_contact<br>FROM customers, orders, orderitems<br>WHERE customers.cust_id &#x3D; orders.cust_id<br>AND orderitems.order_num &#x3D; orders.order_num<br>AND prod_id &#x3D; ‘P001’;</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h1><ol>
+<li>使用别名<blockquote>
+<p>SELECT cust_name, cust_contact<br>FROM customers AS c, orders AS o, orderitems AS oi<br>WHERE c.cust_id &#x3D; o.cust_id<br>AND oi.order_num &#x3D; o.order_num<br>AND prod_id &#x3D; ‘P001’;</p>
+</blockquote>
+</li>
+<li>自联结<blockquote>
+<p>SELECT p1.prod_id, p1.prod_name<br>FROM products AS p1, products AS p2<br>WHERE p1.vend_id &#x3D; p2.vend_id<br>AND p2.prod_id &#x3D; ‘P001’;</p>
+</blockquote>
+</li>
+<li>自然联结：结果会将相同的列不显示<blockquote>
+<p>SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price<br>FROM customers AS c, orders AS o, orderitems AS oi<br>WHERE c.cust_id &#x3D; o.cust_id<br>  AND oi.order_num &#x3D; o.order_num<br>  AND oi.prod_id &#x3D; ‘P001’;</p>
+</blockquote>
+</li>
+<li>外部联结：结果会显示所有行，包括联结条件为空的行,而内部联结仅仅显示满足条件的行<ol>
+<li>LEFT OUTER JOIN</li>
+<li>RIGHT OUTER JOIN</li>
+</ol>
+</li>
+<li>示例：使用带聚函数的联结<blockquote>
+<p>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id &#x3D; orders.cust_id<br>GROUP BY customers.cust_id;</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h1><ol>
+<li>UNION：合并两或多个查询结果</li>
+</ol>
+<blockquote>
+<p> SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE prod_price &lt;&#x3D; 250.0<br>   UNION<br>   SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE vend_id IN (‘V001’, ‘V003’);</p>
+</blockquote>
+<ol start="2">
+<li><p>UNION ALL：合并两或多个查询结果，并保留重复行</p>
+<blockquote>
+<p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION ALL<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’);</p>
+</blockquote>
+</li>
+<li><p>排序只需要在最后一条语句中添加 ORDER BY 语句</p>
+<blockquote>
+<p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’)<br>ORDER BY prod_price;</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>操作系统真相还原</title>
@@ -1462,6 +1510,27 @@
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE * fp;</span><br><span class="line">    <span class="type">int</span> fd=open(<span class="string">&quot;old.txt&quot;</span>,O_WRONLY|O_CREAT|O_TRUNC);</span><br><span class="line">    <span class="keyword">if</span>(fd==<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fputs</span>(<span class="string">&quot;file open error&quot;</span>,<span class="built_in">stdout</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fp=fdopen(fd,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;First file description is %d \n&quot;</span>,fd);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;Network C programming \n&quot;</span>,fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Second file description is %d \n&quot;</span>,fileno(fp));</span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="基于套接字的标准-I-O-函数使用"><a href="#基于套接字的标准-I-O-函数使用" class="headerlink" title="基于套接字的标准 I/O 函数使用"></a>基于套接字的标准 I/O 函数使用</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUF_SIZE 1024</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> serv_sock,clnt_sock;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>,<span class="title">clnt_addr</span>;</span></span><br><span class="line">    FILE* readfp ,*writefp;</span><br><span class="line">    <span class="type">char</span> message[BUF_SIZE];</span><br><span class="line">    <span class="type">int</span> str_len;</span><br><span class="line">    <span class="type">socklen_t</span> clnt_addr_size;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(argc!=<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Usage : %s &lt;port&gt;\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    serv_sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(serv_sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;socket() error&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);</span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">1</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(bind(serv_sock,(<span class="keyword">struct</span> sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)</span><br><span class="line">        error_handling(<span class="string">&quot;bind() error&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(listen(serv_sock,<span class="number">5</span>)==<span class="number">-1</span>) error_handling(<span class="string">&quot;listen() error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    clnt_addr_size=<span class="keyword">sizeof</span>(clnt_addr);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        clnt_sock=accept(serv_sock,(<span class="keyword">struct</span> sockaddr*)&amp;clnt_addr,&amp;clnt_addr_size);</span><br><span class="line">        <span class="keyword">if</span>(clnt_sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;accept() error&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;Connected client %d \n&quot;</span>,i+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        readfp=fdopen(clnt_sock,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">        writefp=fdopen(clnt_sock,<span class="string">&quot;w&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!feof(readfp))</span><br><span class="line">        &#123;</span><br><span class="line">            fgets(message,BUF_SIZE,readfp);</span><br><span class="line">            <span class="built_in">fputs</span>(message,writefp);</span><br><span class="line">            fflush(writefp);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fclose(readfp);</span><br><span class="line">        fclose(writefp);</span><br><span class="line">    &#125;</span><br><span class="line">    close(serv_sock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUF_SIZE 1024</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sock;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    FILE* readfp ,*writefp;</span><br><span class="line">    <span class="type">char</span> message[BUF_SIZE];</span><br><span class="line">    <span class="type">int</span> str_len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(argc!=<span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Usage : %s &lt;port&gt;\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(sock==<span class="number">-1</span>)error_handling(<span class="string">&quot;socket() error&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=inet_addr(argv[<span class="number">1</span>]);</span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connect(sock,(<span class="keyword">struct</span> sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)error_handling(<span class="string">&quot;connect() error&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;Connect ............\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    readfp=fdopen(sock,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">    writefp=fdopen(sock,<span class="string">&quot;w&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fputs</span>(<span class="string">&quot;Input message(Q to quit): &quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line">        fgets(message, BUF_SIZE, <span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(message, <span class="string">&quot;q\n&quot;</span>) || !<span class="built_in">strcmp</span>(message, <span class="string">&quot;Q\n&quot;</span>))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">fputs</span>(message,writefp);</span><br><span class="line">        fflush(writefp);</span><br><span class="line">        fgets(message,BUF_SIZE,readfp);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Message from server: %s&quot;</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(writefp);</span><br><span class="line">    fclose(readfp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">error_handling</span><span class="params">(<span class="type">char</span>* message)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>计时提醒器</title>
+    <url>/uncategorized/play/study/</url>
+    <content><![CDATA[<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><ol>
+<li>计时1.5小时</li>
+<li>期间任意3-5分钟会播放叮的一声</li>
+<li>播放结束后会播放一个提示音</li>
+</ol>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li><p>SDL_Mixer:支持wav格式,自己找两个替换bing.wav,over.wav,可以到这里找: <a href="https://freesound.org/">https://freesound.org/</a></p>
+</li>
+<li><p>linux-ubuntu下载：sudo apt-get install libsdl2-mixer-dev</p>
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="work-hpp"><a href="#work-hpp" class="headerlink" title="work.hpp"></a>work.hpp</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># include &lt;SDL2/SDL.h&gt;</span><br><span class="line"># include &lt;SDL2/SDL_mixer.h&gt;</span><br><span class="line"># include &lt;chrono&gt;</span><br><span class="line"># include &lt;cmath&gt;</span><br><span class="line"># include &lt;cstdlib&gt;</span><br><span class="line"># include &lt;functional&gt;</span><br><span class="line"># include &lt;iomanip&gt;</span><br><span class="line"># include &lt;iostream&gt;</span><br><span class="line"># include &lt;random&gt;</span><br><span class="line"># include &lt;thread&gt;</span><br><span class="line"></span><br><span class="line">// 类型别名</span><br><span class="line">using Clock      = std::chrono::steady_clock;</span><br><span class="line">using TimePoint  = Clock::time_point;</span><br><span class="line">using Seconds    = std::chrono::seconds;</span><br><span class="line">using Minutes    = std::chrono::minutes;</span><br><span class="line">using Hours      = std::chrono::hours;</span><br><span class="line"></span><br><span class="line">class mytool&#123;</span><br><span class="line">public:</span><br><span class="line">    Seconds pick_random_delay();</span><br><span class="line">    void init(Mix_Chunk* &amp;over,Mix_Chunk* &amp;bing);</span><br><span class="line">    void test1(Mix_Chunk* bing);</span><br><span class="line">    void test2(Mix_Chunk* over);</span><br><span class="line">    void run();</span><br><span class="line">private:</span><br><span class="line">    Mix_Chunk* over, *bing;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="tool-cpp"><a href="#tool-cpp" class="headerlink" title="tool.cpp"></a>tool.cpp</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># include &quot;work.hpp&quot;</span><br><span class="line"></span><br><span class="line">// 生成一个 [180, 300] 秒的随机延迟</span><br><span class="line">Seconds mytool::pick_random_delay() &#123;</span><br><span class="line">    static std::random_device rd;</span><br><span class="line">    static std::mt19937       gen(rd());</span><br><span class="line">    std::uniform_int_distribution&lt;&gt; dist(180, 300);</span><br><span class="line">    return Seconds(dist(gen));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::init(Mix_Chunk* &amp;over,Mix_Chunk* &amp;bing)</span><br><span class="line">&#123;</span><br><span class="line">    // 初始化 SDL 和 SDL_Mixer</span><br><span class="line">    if (SDL_Init(SDL_INIT_AUDIO) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;SDL初始化失败: %s\n&quot;, SDL_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 4096) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;音频设备初始化失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //加载 WAV 文件</span><br><span class="line">    over=Mix_LoadWAV(&quot;over.wav&quot;);</span><br><span class="line">    if (!over) &#123;</span><br><span class="line">        printf(&quot;加载over音频失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">    bing=Mix_LoadWAV(&quot;bing.wav&quot;);</span><br><span class="line">    if (!bing) &#123;</span><br><span class="line">        printf(&quot;加载bing音频失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::test1(Mix_Chunk* bing)</span><br><span class="line">&#123;</span><br><span class="line">    Mix_PlayChannel(0, bing, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::test2(Mix_Chunk* over)</span><br><span class="line">&#123;</span><br><span class="line">    Mix_PlayChannel(0, over, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::run()</span><br><span class="line">&#123;</span><br><span class="line">    init(over,bing);</span><br><span class="line">    auto start       = Clock::now();</span><br><span class="line">    auto total_dur   = Hours(1) + Minutes(30);      // 1.5 小时</span><br><span class="line">    auto end_time    = start + total_dur;</span><br><span class="line">    auto task_delay  = pick_random_delay();</span><br><span class="line">    auto task_time   = start + task_delay;</span><br><span class="line">    while(true)</span><br><span class="line">    &#123;</span><br><span class="line">        auto now =Clock::now();</span><br><span class="line">        if(now&gt;=end_time)</span><br><span class="line">        &#123;</span><br><span class="line">            test2(over);</span><br><span class="line">            std::cout &lt;&lt;&quot;\n倒计时结束,程序退出。\n&quot;;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(now&gt;=task_time)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt;&quot;该休息10秒了,闭眼吧&quot;&lt;&lt;std::endl;</span><br><span class="line">            test1(bing);</span><br><span class="line">            task_delay  = pick_random_delay();</span><br><span class="line">            task_time = now + task_delay;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    mytool test;</span><br><span class="line">    test.run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><ul>
+<li>编译：g++ tool.cpp -o work -lSDL2 -lSDL2_mixer</li>
+</ul>
 ]]></content>
   </entry>
 </search>
