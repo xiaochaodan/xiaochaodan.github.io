@@ -830,38 +830,52 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT vend_name, prod_name, prod_price</span><br><span class="line">FROM vendors, products</span><br><span class="line">WHERE vendors.vend_id = products.vend_id</span><br><span class="line">ORDER BY vend_name, prod_name;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>笛卡尔积<br>SELECT * FROM 表名1, 表名2;    笛卡尔积<blockquote>
-<p>SELECT * FROM products, orderitems;</p>
-</blockquote>
-</li>
-<li>INNER JOIN:内联联结<br>SELECT 字段 FROM 表名1 INNER JOIN 表名2 ON 表名1.字段 &#x3D; 表名2.字段;<blockquote>
-<p>SELECT vend_name, prod_name, prod_price<br>FROM vendors INNER JOIN products<br>ON vendors.vend_id &#x3D; products.vend_id;</p>
-</blockquote>
-</li>
-<li>联结多个表&#x3D;&#x3D;上一章的利用子查询进行过滤<blockquote>
-<p>SELECT cust_name, cust_contact<br>FROM customers, orders, orderitems<br>WHERE customers.cust_id &#x3D; orders.cust_id<br>AND orderitems.order_num &#x3D; orders.order_num<br>AND prod_id &#x3D; ‘P001’;</p>
-</blockquote>
-</li>
+<li>笛卡尔积</li>
 </ol>
+<p>SELECT * FROM 表名1, 表名2;    笛卡尔积</p>
+<blockquote>
+<p>SELECT * FROM products, orderitems;</p>
+<ol start="3">
+<li>INNER JOIN:内联联结</li>
+</ol>
+</blockquote>
+<p>SELECT 字段 FROM 表名1 INNER JOIN 表名2 ON 表名1.字段 &#x3D; 表名2.字段;</p>
+<blockquote>
+<p>SELECT vend_name, prod_name, prod_price<br>   FROM vendors INNER JOIN products<br>   ON vendors.vend_id &#x3D; products.vend_id;</p>
+</blockquote>
+<ol start="4">
+<li>联结多个表&#x3D;&#x3D;上一章的利用子查询进行过滤</li>
+</ol>
+<blockquote>
+<p>SELECT cust_name, cust_contact<br>   FROM customers, orders, orderitems<br>   WHERE customers.cust_id &#x3D; orders.cust_id<br>   AND orderitems.order_num &#x3D; orders.order_num<br>   AND prod_id &#x3D; ‘P001’;</p>
+</blockquote>
 <h1 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h1><ol>
-<li>使用别名<blockquote>
-<p>SELECT cust_name, cust_contact<br>FROM customers AS c, orders AS o, orderitems AS oi<br>WHERE c.cust_id &#x3D; o.cust_id<br>AND oi.order_num &#x3D; o.order_num<br>AND prod_id &#x3D; ‘P001’;</p>
+<li>使用别名</li>
+</ol>
+<blockquote>
+<p>SELECT cust_name, cust_contact<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id &#x3D; o.cust_id<br>   AND oi.order_num &#x3D; o.order_num<br>   AND prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-</li>
-<li>自联结<blockquote>
-<p>SELECT p1.prod_id, p1.prod_name<br>FROM products AS p1, products AS p2<br>WHERE p1.vend_id &#x3D; p2.vend_id<br>AND p2.prod_id &#x3D; ‘P001’;</p>
+<ol start="2">
+<li>自联结</li>
+</ol>
+<blockquote>
+<p>SELECT p1.prod_id, p1.prod_name<br>   FROM products AS p1, products AS p2<br>   WHERE p1.vend_id &#x3D; p2.vend_id<br>   AND p2.prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-</li>
-<li>自然联结：结果会将相同的列不显示<blockquote>
-<p>SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price<br>FROM customers AS c, orders AS o, orderitems AS oi<br>WHERE c.cust_id &#x3D; o.cust_id<br>  AND oi.order_num &#x3D; o.order_num<br>  AND oi.prod_id &#x3D; ‘P001’;</p>
+<ol start="3">
+<li>自然联结：结果会将相同的列不显示</li>
+</ol>
+<blockquote>
+<p>SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id &#x3D; o.cust_id<br>  AND oi.order_num &#x3D; o.order_num<br>  AND oi.prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-</li>
-<li>外部联结：结果会显示所有行，包括联结条件为空的行,而内部联结仅仅显示满足条件的行<ol>
+<ol start="4">
+<li><p>外部联结：结果会显示所有行，包括联结条件为空的行,而内部联结仅仅显示满足条件的行</p>
+<ol>
 <li>LEFT OUTER JOIN</li>
 <li>RIGHT OUTER JOIN</li>
 </ol>
 </li>
-<li>示例：使用带聚函数的联结<blockquote>
+<li><p>示例：使用带聚函数的联结</p>
+<blockquote>
 <p>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id &#x3D; orders.cust_id<br>GROUP BY customers.cust_id;</p>
 </blockquote>
 </li>
@@ -873,17 +887,44 @@
 <p> SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE prod_price &lt;&#x3D; 250.0<br>   UNION<br>   SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE vend_id IN (‘V001’, ‘V003’);</p>
 </blockquote>
 <ol start="2">
-<li><p>UNION ALL：合并两或多个查询结果，并保留重复行</p>
+<li>UNION ALL：合并两或多个查询结果，并保留重复行</li>
+</ol>
 <blockquote>
 <p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION ALL<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’);</p>
 </blockquote>
-</li>
-<li><p>排序只需要在最后一条语句中添加 ORDER BY 语句</p>
-<blockquote>
+<ol start="3">
+<li>排序只需要在最后一条语句中添加 ORDER BY 语句<blockquote>
 <p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’)<br>ORDER BY prod_price;</p>
 </blockquote>
 </li>
 </ol>
+<h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><ol>
+<li>插入整行</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INSERT INTO vendors (</span><br><span class="line">    vend_id,</span><br><span class="line">    vend_name,</span><br><span class="line">    vend_address,</span><br><span class="line">    vend_city,</span><br><span class="line">    vend_state,</span><br><span class="line">    vend_zip,</span><br><span class="line">    vend_country) </span><br><span class="line">VALUES (</span><br><span class="line">    &#x27;V011&#x27;,</span><br><span class="line">    &#x27;供应商十一&#x27;,</span><br><span class="line">    &#x27;郑州市龙子湖区四七街道00号&#x27;,</span><br><span class="line">    &#x27;郑州市&#x27;,</span><br><span class="line">    &#x27;河南&#x27;,</span><br><span class="line">    &#x27;543112&#x27;,</span><br><span class="line">    &#x27;china&#x27;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>插入多行</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INSERT INTO vendors (</span><br><span class="line">    vend_id,</span><br><span class="line">    vend_name,</span><br><span class="line">    vend_address,</span><br><span class="line">    vend_city,</span><br><span class="line">    vend_state,</span><br><span class="line">    vend_zip,</span><br><span class="line">    vend_country) </span><br><span class="line">VALUES (</span><br><span class="line">    &#x27;V011&#x27;,</span><br><span class="line">    &#x27;供应商十一&#x27;,</span><br><span class="line">    &#x27;郑州市龙子湖区四七街道00号&#x27;,</span><br><span class="line">    &#x27;郑州市&#x27;,</span><br><span class="line">    &#x27;河南&#x27;,</span><br><span class="line">    &#x27;543112&#x27;,</span><br><span class="line">    &#x27;china&#x27;</span><br><span class="line">),</span><br><span class="line">(&#x27;V012&#x27;,</span><br><span class="line">    &#x27;供应商十二&#x27;,</span><br><span class="line">    &#x27;郑州市龙子湖区四七街道01号&#x27;,</span><br><span class="line">    &#x27;郑州市&#x27;,</span><br><span class="line">    &#x27;河南&#x27;,</span><br><span class="line">    &#x27;5431134&#x27;,</span><br><span class="line">    &#x27;china&#x27;);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>插入检索出的数据（行数要对应）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INSERT INTO example (a1, A2, A3, A4, A5, A6, A7, A8, A9)</span><br><span class="line">SELECT *</span><br><span class="line">FROM customers;</span><br></pre></td></tr></table></figure>
+
+<h1 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h1><ol>
+<li>更新数据（没有过滤就是更新所有cust_email字段）</li>
+</ol>
+<blockquote>
+<p>UPDATE customers<br>SET cust_email &#x3D; ‘<a href="mailto:&#110;&#x65;&#x77;&#x65;&#x6d;&#97;&#105;&#x6c;&#64;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">newemail@example.com</a>‘<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
+</blockquote>
+<ol start="2">
+<li>删除数据(没有过滤的话就是删除所有)</li>
+</ol>
+<blockquote>
+<p> DELETE FROM customers<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
+</blockquote>
 ]]></content>
   </entry>
   <entry>
@@ -1513,8 +1554,13 @@
 ]]></content>
   </entry>
   <entry>
+    <title>gdb</title>
+    <url>/uncategorized/tool/gdb/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>计时提醒器</title>
-    <url>/uncategorized/play/study/</url>
+    <url>/uncategorized/tool/study/</url>
     <content><![CDATA[<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><ol>
 <li>计时1.5小时</li>
 <li>期间任意3-5分钟会播放叮的一声</li>
@@ -1527,7 +1573,9 @@
 </li>
 </ul>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="work-hpp"><a href="#work-hpp" class="headerlink" title="work.hpp"></a>work.hpp</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># include &lt;SDL2/SDL.h&gt;</span><br><span class="line"># include &lt;SDL2/SDL_mixer.h&gt;</span><br><span class="line"># include &lt;chrono&gt;</span><br><span class="line"># include &lt;cmath&gt;</span><br><span class="line"># include &lt;cstdlib&gt;</span><br><span class="line"># include &lt;functional&gt;</span><br><span class="line"># include &lt;iomanip&gt;</span><br><span class="line"># include &lt;iostream&gt;</span><br><span class="line"># include &lt;random&gt;</span><br><span class="line"># include &lt;thread&gt;</span><br><span class="line"></span><br><span class="line">// 类型别名</span><br><span class="line">using Clock      = std::chrono::steady_clock;</span><br><span class="line">using TimePoint  = Clock::time_point;</span><br><span class="line">using Seconds    = std::chrono::seconds;</span><br><span class="line">using Minutes    = std::chrono::minutes;</span><br><span class="line">using Hours      = std::chrono::hours;</span><br><span class="line"></span><br><span class="line">class mytool&#123;</span><br><span class="line">public:</span><br><span class="line">    Seconds pick_random_delay();</span><br><span class="line">    void init(Mix_Chunk* &amp;over,Mix_Chunk* &amp;bing);</span><br><span class="line">    void test1(Mix_Chunk* bing);</span><br><span class="line">    void test2(Mix_Chunk* over);</span><br><span class="line">    void run();</span><br><span class="line">private:</span><br><span class="line">    Mix_Chunk* over, *bing;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="tool-cpp"><a href="#tool-cpp" class="headerlink" title="tool.cpp"></a>tool.cpp</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># include &quot;work.hpp&quot;</span><br><span class="line"></span><br><span class="line">// 生成一个 [180, 300] 秒的随机延迟</span><br><span class="line">Seconds mytool::pick_random_delay() &#123;</span><br><span class="line">    static std::random_device rd;</span><br><span class="line">    static std::mt19937       gen(rd());</span><br><span class="line">    std::uniform_int_distribution&lt;&gt; dist(180, 300);</span><br><span class="line">    return Seconds(dist(gen));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::init(Mix_Chunk* &amp;over,Mix_Chunk* &amp;bing)</span><br><span class="line">&#123;</span><br><span class="line">    // 初始化 SDL 和 SDL_Mixer</span><br><span class="line">    if (SDL_Init(SDL_INIT_AUDIO) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;SDL初始化失败: %s\n&quot;, SDL_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 4096) &lt; 0) &#123;</span><br><span class="line">        printf(&quot;音频设备初始化失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //加载 WAV 文件</span><br><span class="line">    over=Mix_LoadWAV(&quot;over.wav&quot;);</span><br><span class="line">    if (!over) &#123;</span><br><span class="line">        printf(&quot;加载over音频失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">    bing=Mix_LoadWAV(&quot;bing.wav&quot;);</span><br><span class="line">    if (!bing) &#123;</span><br><span class="line">        printf(&quot;加载bing音频失败: %s\n&quot;, Mix_GetError());</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::test1(Mix_Chunk* bing)</span><br><span class="line">&#123;</span><br><span class="line">    Mix_PlayChannel(0, bing, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::test2(Mix_Chunk* over)</span><br><span class="line">&#123;</span><br><span class="line">    Mix_PlayChannel(0, over, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mytool::run()</span><br><span class="line">&#123;</span><br><span class="line">    init(over,bing);</span><br><span class="line">    auto start       = Clock::now();</span><br><span class="line">    auto total_dur   = Hours(1) + Minutes(30);      // 1.5 小时</span><br><span class="line">    auto end_time    = start + total_dur;</span><br><span class="line">    auto task_delay  = pick_random_delay();</span><br><span class="line">    auto task_time   = start + task_delay;</span><br><span class="line">    while(true)</span><br><span class="line">    &#123;</span><br><span class="line">        auto now =Clock::now();</span><br><span class="line">        if(now&gt;=end_time)</span><br><span class="line">        &#123;</span><br><span class="line">            test2(over);</span><br><span class="line">            std::cout &lt;&lt;&quot;\n倒计时结束,程序退出。\n&quot;;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(now&gt;=task_time)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt;&quot;该休息10秒了,闭眼吧&quot;&lt;&lt;std::endl;</span><br><span class="line">            test1(bing);</span><br><span class="line">            task_delay  = pick_random_delay();</span><br><span class="line">            task_time = now + task_delay;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    mytool test;</span><br><span class="line">    test.run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><ul>
 <li>编译：g++ tool.cpp -o work -lSDL2 -lSDL2_mixer</li>
 </ul>
