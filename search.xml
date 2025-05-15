@@ -1647,6 +1647,7 @@
     <content><![CDATA[<ul>
 <li>mkdir -p ~&#x2F;vscode_install</li>
 <li>cd ~&#x2F;vscode_install</li>
+<li>cp &#x2F;mnt&#x2F;c&#x2F;Users&#x2F;chao&#x2F;Documents&#x2F;Downloads&#x2F;vscode-server-linux-x64.tar.gz ~&#x2F;vscode_install&#x2F;</li>
 <li>mkdir -p ~&#x2F;.vscode-server&#x2F;bin&#x2F;91fa95bccb027ece6a968589bb1d662fa9c8e170</li>
 <li>tar -xzf ~&#x2F;vscode_install&#x2F;vscode-server-linux-x64.tar.gz <br>–strip-components&#x3D;1 <br>-C ~&#x2F;.vscode-server&#x2F;bin&#x2F;91fa95bccb027ece6a968589bb1d662fa9c8e170</li>
 </ul>
