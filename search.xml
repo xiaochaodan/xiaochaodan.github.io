@@ -245,6 +245,7 @@
 <li><p>检索指定表的列<br>SELECT 表名.字段名 FROM 表名;</p>
 </li>
 </ol>
+<hr>
 <h1 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h1><ol>
 <li><p>默认升序排序<br>SELECT 字段名 FROM 表名 ORDER BY 字段名;</p>
 <blockquote>
@@ -267,6 +268,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><ol>
 <li><p>检索满足条件的数据<br>SELECT 字段名 FROM 表名 WHERE 条件;</p>
 <ul>
@@ -284,10 +286,11 @@
 </li>
 <li><p>检索为空的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 IS NULL;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE nickname IS NULL;</p>
+<p>SELECT *<br>   FROM products<br>   WHERE nickname IS NULL;</p>
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h1><ol>
 <li><p>满足所有条件（AND）<br>SELECT 字段名 FROM 表名 WHERE 条件1 AND 条件2;</p>
 <blockquote>
@@ -298,12 +301,10 @@
 <blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’ OR money &#x3D; 20;</p>
 </blockquote>
-</li>
-</ol>
 <blockquote>
 <p>注意：AND 优先级高于 OR</p>
 </blockquote>
-<ol start="3">
+</li>
 <li><p>指定值检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 IN (值1, 值2, …);</p>
 <blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name IN (‘shangping1’, ‘shangping2’);</p>
@@ -315,6 +316,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h1><ol>
 <li><p><code>%</code>：匹配任意数量的字符</p>
 <ol>
@@ -347,6 +349,7 @@
 </ol>
 </li>
 </ol>
+<hr>
 <h1 id="使用正则表达式进行搜索"><a href="#使用正则表达式进行搜索" class="headerlink" title="使用正则表达式进行搜索"></a>使用正则表达式进行搜索</h1><ol>
 <li><p><code>REGEXP</code>：使用正则表达式进行搜索<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘正则表达式’;</p>
 </li>
@@ -380,8 +383,6 @@
 <li><p>\\\:\</p>
 </li>
 <li><p>匹配空白元字符</p>
-</li>
-</ol>
 </li>
 </ol>
 <table>
@@ -533,9 +534,14 @@
 <td>词的结尾</td>
 </tr>
 </tbody></table>
-<ol start="7">
-<li>例子<br>   SELECT *<br>   FROM products<br>   WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</li>
+</li>
+<li><p>例子</p>
+<blockquote>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</p>
+</blockquote>
+</li>
 </ol>
+<hr>
 <h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1><ol>
 <li>Concat 函数：连接字符串<br>SELECT Concat(字段1，’(‘,字段2,’)’) FROM 表名;  检索结果为字段1（字段2）<blockquote>
 <p>SELECT Concat(prod_name,’(‘,prod_price,’)’) FROM products;</p>
@@ -554,6 +560,7 @@
 </ol>
 </li>
 </ol>
+<hr>
 <h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><ol>
 <li>常用的文本处理函数</li>
 </ol>
@@ -731,6 +738,7 @@
 <td>返回一个角度的正切</td>
 </tr>
 </tbody></table>
+<hr>
 <h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><ol>
 <li>AVG 函数：计算平均值<br>SELECT AVG(字段) FROM 表名;<blockquote>
 <p>SELECT AVG(prod_price) FROM products;</p>
@@ -757,6 +765,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h1><ol>
 <li>GROUP BY 语句：对数据进行分组</li>
 </ol>
@@ -814,6 +823,7 @@
 <td>否</td>
 </tr>
 </tbody></table>
+<hr>
 <h1 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h1><ol>
 <li>利用子查询进行过滤</li>
 </ol>
@@ -824,6 +834,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   SELECT cust_name, cust_state, (SELECT COUNT(*)</span><br><span class="line">                                 FROM orders</span><br><span class="line">                                 WHERE orders.cust_id = customers.cust_id) AS orders</span><br><span class="line">FROM customers</span><br><span class="line">ORDER BY cust_name;</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h1><ol>
 <li>等值联结</li>
 </ol>
@@ -849,6 +860,7 @@
 <blockquote>
 <p>SELECT cust_name, cust_contact<br>   FROM customers, orders, orderitems<br>   WHERE customers.cust_id &#x3D; orders.cust_id<br>   AND orderitems.order_num &#x3D; orders.order_num<br>   AND prod_id &#x3D; ‘P001’;</p>
 </blockquote>
+<hr>
 <h1 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h1><ol>
 <li>使用别名</li>
 </ol>
@@ -880,6 +892,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h1><ol>
 <li>UNION：合并两或多个查询结果</li>
 </ol>
@@ -898,6 +911,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><ol>
 <li>插入整行</li>
 </ol>
@@ -913,11 +927,12 @@
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> example (a1, A2, A3, A4, A5, A6, A7, A8, A9)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers;</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h1><ol>
 <li>更新数据（没有过滤就是更新所有cust_email字段）</li>
 </ol>
 <blockquote>
-<p>UPDATE customers<br>SET cust_email &#x3D; ‘<a href="mailto:&#x6e;&#x65;&#x77;&#101;&#x6d;&#97;&#105;&#x6c;&#64;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;">newemail@example.com</a>‘<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
+<p>UPDATE customers<br>SET cust_email &#x3D; ‘<a href="mailto:&#110;&#101;&#119;&#x65;&#109;&#97;&#x69;&#x6c;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#x6d;">newemail@example.com</a>‘<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
 </blockquote>
 <ol start="2">
 <li>删除数据(没有过滤的话就是删除所有)</li>
@@ -925,6 +940,7 @@
 <blockquote>
 <p> DELETE FROM customers<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
 </blockquote>
+<hr>
 <h1 id="创建和操作表"><a href="#创建和操作表" class="headerlink" title="创建和操作表"></a>创建和操作表</h1><ol>
 <li>创建表—CREATE TABLE</li>
 <li>自动增加值—AUTO_INCREMENT</li>
@@ -946,6 +962,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h1><ol>
 <li>创建视图—CREATE VIEW name AS(将视图当初一个类似函数的东西)</li>
 </ol>
@@ -958,6 +975,7 @@
 <blockquote>
 <p>SELECT *<br>FROM example;</p>
 </blockquote>
+<hr>
 <h1 id="使用存储过程"><a href="#使用存储过程" class="headerlink" title="使用存储过程"></a>使用存储过程</h1><ol>
 <li>创建存储过程—CREATE PROCEDURE name(参数列表)</li>
 <li>输入参数—IN 参数</li>
@@ -977,6 +995,7 @@
 <blockquote>
 <p>DROP PROCEDURE IF EXISTS name;</p>
 </blockquote>
+<hr>
 <p>DELIMITER &#x2F;&#x2F;   – 改变语句结束符，防止过程体内的分号被误识为语句结束<br>CREATE PROCEDURE processorders()  – 创建名为 processorders 的存储过程<br>BEGIN<br>   DECLARE done BOOLEAN DEFAULT 0;  – 定义一个布尔变量 done，标记游标是否读取完毕，初始为 0（未完成）</p>
 <p>   DECLARE o INT;  – 定义变量 o，用于存储每次 FETCH 得到的 order_item 值<br>   DECLARE t DECIMAL(8,2);  – 定义变量 t，用于存储 get_min_price 输出的总价（或最小价格）</p>
 <p>   DECLARE ordernumbers CURSOR  – 声明游标 ordernumbers<br>   FOR<br>   SELECT order_item FROM orderitems;  – 游标查询的是 orderitems 表中的 order_item 字段</p>
@@ -1644,12 +1663,15 @@
   <entry>
     <title>vscode手动安装--wsl</title>
     <url>/uncategorized/tool/vscode/</url>
-    <content><![CDATA[<ul>
-<li>mkdir -p ~&#x2F;vscode_install</li>
-<li>cd ~&#x2F;vscode_install</li>
-<li>cp &#x2F;mnt&#x2F;c&#x2F;Users&#x2F;chao&#x2F;Documents&#x2F;Downloads&#x2F;vscode-server-linux-x64.tar.gz ~&#x2F;vscode_install&#x2F;</li>
-<li>mkdir -p ~&#x2F;.vscode-server&#x2F;bin&#x2F;91fa95bccb027ece6a968589bb1d662fa9c8e170</li>
-<li>tar -xzf ~&#x2F;vscode_install&#x2F;vscode-server-linux-x64.tar.gz <br>–strip-components&#x3D;1 <br>-C ~&#x2F;.vscode-server&#x2F;bin&#x2F;91fa95bccb027ece6a968589bb1d662fa9c8e170</li>
+    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><ul>
+<li>mkdir -p ~/vscode_install</li>
+<li>cd ~/vscode_install</li>
+<li>cp /mnt/c/Users/chao/Documents/Downloads/vscode-server-linux-x64.tar.gz ~/vscode_install/ ./</li>
+<li>mkdir -p ~/.vscode-server/bin/<commit></li>
+<li>tar -xzf ~/vscode_install/vscode-server-linux-x64.tar.gz \<br>—strip-components=1 \<br>-C ~/.vscode-server/bin/<commit></li>
+</ul>
+<h2 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h2><ul>
+<li>vscode -&gt;帮助 -&gt;关于</li>
 </ul>
 ]]></content>
   </entry>
