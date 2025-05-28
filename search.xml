@@ -709,6 +709,34 @@
 <li>存储过程使用游标</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER //   -- 改变语句结束符，防止过程体内的分号被误识为语句结束</span><br><span class="line">CREATE PROCEDURE processorders()  -- 创建名为 processorders 的存储过程</span><br><span class="line">BEGIN</span><br><span class="line">   DECLARE done BOOLEAN DEFAULT 0;  -- 定义一个布尔变量 done，标记游标是否读取完毕，初始为 0（未完成）</span><br><span class="line"></span><br><span class="line">   DECLARE o INT;  -- 定义变量 o，用于存储每次 FETCH 得到的 order_item 值</span><br><span class="line">   DECLARE t DECIMAL(8,2);  -- 定义变量 t，用于存储 get_min_price 输出的总价（或最小价格）</span><br><span class="line">   -- 游标的创建</span><br><span class="line">   DECLARE ordernumbers CURSOR  -- 声明游标 ordernumbers</span><br><span class="line">   FOR</span><br><span class="line">   SELECT order_item FROM orderitems;  -- 游标查询的是 orderitems 表中的 order_item 字段</span><br><span class="line"></span><br><span class="line">   DECLARE CONTINUE HANDLER FOR SQLSTATE &#x27;02000&#x27; SET done = 1;  </span><br><span class="line">   -- 当游标读取不到数据（即到达结尾，SQLSTATE &#x27;02000&#x27;）时，将 done 设为 1（结束标记）</span><br><span class="line"></span><br><span class="line">   CREATE TABLE IF NOT EXISTS ordertotals</span><br><span class="line">   (order_num INT, total DECIMAL(8,2));  </span><br><span class="line">   -- 如果还没有表 ordertotals，就创建它，记录订单号和对应的 total 值（价格）</span><br><span class="line"></span><br><span class="line">   OPEN ordernumbers;  -- 打开游标，开始读取数据</span><br><span class="line"></span><br><span class="line">   REPEAT  -- 开始循环</span><br><span class="line">     FETCH ordernumbers INTO o;  -- 将游标当前行的 order_item 值读取到变量 o 中</span><br><span class="line">     CALL get_min_price(t);  -- 调用存储过程 get_min_price，输出参数为 t</span><br><span class="line">     INSERT INTO ordertotals (order_num,total)</span><br><span class="line">     VALUES (o,t);  -- 将读取的 order_item（o）和得到的价格（t）插入到 ordertotals 表中</span><br><span class="line">   UNTIL done END REPEAT;  -- 直到 done 被置为 1（没有更多数据）时结束循环</span><br><span class="line"></span><br><span class="line">   CLOSE ordernumbers;  -- 关闭游标</span><br><span class="line">END //</span><br><span class="line">DELIMITER ;  -- 恢复默认语句结束符</span><br></pre></td></tr></table></figure>
+<h1 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h1><ol>
+<li>事务的开始</li>
+</ol>
+<blockquote>
+<p>START TRANSACTION;</p>
+</blockquote>
+<ol>
+<li>回退</li>
+</ol>
+<blockquote>
+<p>ROLLBACK;<br>ROLLBACK TO name(保留点名字)</p>
+</blockquote>
+<ol>
+<li>使用保留点</li>
+</ol>
+<blockquote>
+<p>SAVEPOINT name;</p>
+</blockquote>
+<ol>
+<li>提交</li>
+</ol>
+<blockquote>
+<p>COMMIT;</p>
+</blockquote>
+<ol>
+<li>示例</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">START TRANSACTION;</span><br><span class="line">DELETE FROM example;</span><br><span class="line">SELECT * FROM example;   -- 此时为空</span><br><span class="line">ROLLBACK;</span><br><span class="line">SELECT * FROM example;   -- 数据恢复成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
