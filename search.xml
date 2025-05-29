@@ -52,7 +52,7 @@
 <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><ol>
 <li><p>登录数据库<br>mysql -u root -p</p>
 </li>
-<li><p>退出数据库<br>exit/quit</p>
+<li><p>退出数据库<br>exit&#x2F;quit</p>
 </li>
 </ol>
 <h1 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h1><ol>
@@ -97,33 +97,31 @@
 <p>ALTER TABLE products ADD PRIMARY KEY (prod_id);</p>
 </blockquote>
 </li>
-<li><p>修改数据<br>UPDATE 表名 SET 列名 = 新值 WHERE 条件;</p>
+<li><p>修改数据<br>UPDATE 表名 SET 列名 &#x3D; 新值 WHERE 条件;</p>
 <ol>
 <li><p>单条更新示例  </p>
 <blockquote>
-<p>UPDATE products SET money = 20 WHERE id = 1;<br>UPDATE products SET number = 0 WHERE number IS NULL;</p>
+<p>UPDATE products SET money &#x3D; 20 WHERE id &#x3D; 1;<br>UPDATE products SET number &#x3D; 0 WHERE number IS NULL;</p>
 </blockquote>
 </li>
 <li><p>批量更新示例  </p>
 <blockquote>
-<p>UPDATE products<br>SET money = CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
+<p>UPDATE products<br>SET money &#x3D; CASE id<br>WHEN 1 THEN 20<br>WHEN 2 THEN 30<br>ELSE money<br>END;</p>
 </blockquote>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><div class="table-container">
-<table>
+<h2 id="📦-常见-SQL-数据类型"><a href="#📦-常见-SQL-数据类型" class="headerlink" title="📦 常见 SQL 数据类型"></a>📦 常见 SQL 数据类型</h2><table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><code>INT</code> / <code>INTEGER</code></td>
+<tbody><tr>
+<td><code>INT</code> &#x2F; <code>INTEGER</code></td>
 <td>整数类型，常用于 ID、数量等。可加 <code>UNSIGNED</code> 表示非负。</td>
 </tr>
 <tr>
@@ -135,7 +133,7 @@
 <td>用于非常大的整数，如用户量巨大的系统。</td>
 </tr>
 <tr>
-<td><code>FLOAT</code> / <code>DOUBLE</code></td>
+<td><code>FLOAT</code> &#x2F; <code>DOUBLE</code></td>
 <td>浮点数，适合温度、速度等有小数的值。</td>
 </tr>
 <tr>
@@ -170,20 +168,16 @@
 <td><code>BOOLEAN</code></td>
 <td>布尔类型，<code>TRUE</code> 或 <code>FALSE</code>，有些数据库用 <code>1/0</code>。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><div class="table-container">
-<table>
+<h2 id="🧱-常见-SQL-约束"><a href="#🧱-常见-SQL-约束" class="headerlink" title="🧱 常见 SQL 约束"></a>🧱 常见 SQL 约束</h2><table>
 <thead>
 <tr>
 <th>约束关键字</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>PRIMARY KEY</code></td>
 <td>主键，唯一标识每一行记录，不能重复也不能为空。</td>
 </tr>
@@ -207,9 +201,7 @@
 <td><code>FOREIGN KEY</code></td>
 <td>外键，用于关联其他表的主键，建立表之间的关系。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><ol>
 <li><p>检索一个或多个列<br>SELECT 字段名 FROM 表名;</p>
@@ -282,7 +274,7 @@
 <ul>
 <li><p>支持运算符：<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>!=</code>、<code>&lt;&gt;</code>、<code>&gt;=</code>、<code>&lt;=</code></p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE money &#x3D; 20;</p>
 </blockquote>
 </li>
 <li><p>范围检索<br>SELECT 字段名 FROM 表名 WHERE 字段名 BETWEEN 值1 AND 值2;</p>
@@ -302,12 +294,14 @@
 <h1 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h1><ol>
 <li><p>满足所有条件（AND）<br>SELECT 字段名 FROM 表名 WHERE 条件1 AND 条件2;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ AND money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’ AND money &#x3D; 20;</p>
 </blockquote>
 </li>
 <li><p>满足任一条件（OR）<br>SELECT 字段名 FROM 表名 WHERE 条件1 OR 条件2;</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name = ‘shangping1’ OR money = 20;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’ OR money &#x3D; 20;</p>
+</blockquote>
+<blockquote>
 <p>注意：AND 优先级高于 OR</p>
 </blockquote>
 </li>
@@ -346,9 +340,7 @@
 <li><p><code>_</code>：匹配单个字符</p>
 <ol>
 <li><p>检索以指定值开头的数据<br>SELECT 字段名 FROM 表名 WHERE 字段名 LIKE ‘值_’;</p>
-<blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod<em>name LIKE ‘shangping</em>‘;</p>
-</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#x27;shangping_&#x27;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>同上<br>（与上面命令一致，只匹配单个字符）</p>
 </li>
@@ -364,46 +356,178 @@
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping.’;</p>
 </blockquote>
 </li>
-<li>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京<blockquote>
+<li><p>‘|’: 表示或<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘shanghai|beijing’;   匹配上海或北京</p>
+<blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘shangping2|shangping1’;</p>
 </blockquote>
 </li>
-<li>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3<blockquote>
+<li><p>[123..]: 相当于1 | 2 | 3…（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[123]’;   匹配1或2或3</p>
+<blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[123]’;</p>
 </blockquote>
 </li>
-<li><p>[1-8]: 匹配1到8之间的数字（字母也行）<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘[1-8]’;   匹配1到8之间的数字</p>
+<li><p>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;   匹配1到8之间的数字</p>
 <blockquote>
-<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[1-8]’;</p>
+<p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘<a href="%E5%8C%B9%E9%85%8D1%E5%88%B08%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%AD%97%E6%AF%8D%E4%B9%9F%E8%A1%8C%EF%BC%89">1-8</a>‘;</p>
 </blockquote>
 </li>
-<li><p>特殊字符</p>
-<ol>
-<li><p>‘.’:\\.<br>SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘\.’;       匹配包含.的表项</p>
+<li><p>特殊字符<br> ‘.’:\\.<br>   SELECT 字段名 FROM 表名 WHERE 字段名 REGEXP ‘\.’;       匹配包含.的表项</p>
 <blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP “\\.”;</p>
 </blockquote>
 </li>
-<li><p>\\\:\</p>
-</li>
-<li>匹配空白元字符</li>
 </ol>
-<p>| 元字符 | 说明 |<br>| —- | —- |<br>| \f | 换页 |<br>| \n | 换行 |<br>| \r | 回车 |<br>| \t | 制表 |<br>| \v | 纵向制表 |</p>
+<p>\\\:\</p>
+<pre><code>匹配空白元字符
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>纵向制表</td>
+</tr>
+</tbody></table>
+<pre><code>匹配字符类
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[:alnum:]</td>
+<td>任意字母和数字（同[a-zA-Z0-9]）</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>任意字母（同[a-zA-Z]）</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>空格和制表（同[\t]）</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>ASCII控制字符（ASCII 0到31和127）</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>任意数字（同[0-9]）</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>与[:print:]相同，但不包括空格</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>任意小写字母（同[a-z]）</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>任意可打印字符</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>既不在[:alnum:]又不在[:cntrl:]中的任意字符</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>包括空格在内的任意空白字符（同[\f\n\r\t\v]）</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>任意大写字母（同[A-Z]）</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>任意十六进制数字（同[a-fA-F0-9]）</td>
+</tr>
+</tbody></table>
+<pre><code>重复元字符
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>0个或多个匹配</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1个或多个匹配（等于{1,}）</td>
+</tr>
+<tr>
+<td>?</td>
+<td>0个或1个匹配（等于{0,1}）</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>指定数目的匹配</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>不少于指定数目的匹配</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配数目的范围（m不超过255）</td>
+</tr>
+</tbody></table>
+<pre><code>定位元字符
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>文本的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>文本的结尾</td>
+</tr>
+<tr>
+<td>[[:&lt;:]]</td>
+<td>词的开始</td>
+</tr>
+<tr>
+<td>[[:&gt;:]]</td>
+<td>词的结尾</td>
+</tr>
+</tbody></table>
 <ol>
-<li>匹配字符类</li>
-</ol>
-<p>| 类 | 说 明 |<br>| —————————- | —————————————- |<br>| [:alnum:] | 任意字母和数字（同[a-zA-Z0-9]） |<br>| [:alpha:] | 任意字母（同[a-zA-Z]） |<br>| [:blank:] | 空格和制表（同[\t]） |<br>| [:cntrl:] | ASCII控制字符（ASCII 0到31和127） |<br>| [:digit:] | 任意数字（同[0-9]） |<br>| [:graph:] | 与[:print:]相同，但不包括空格 |<br>| [:lower:] | 任意小写字母（同[a-z]） |<br>| [:print:] | 任意可打印字符 |<br>| [:punct:] | 既不在[:alnum:]又不在[:cntrl:]中的任意字符 |<br>| [:space:] | 包括空格在内的任意空白字符（同[\f\n\r\t\v]） |<br>| [:upper:] | 任意大写字母（同[A-Z]） |<br>| [:xdigit:] | 任意十六进制数字（同[a-fA-F0-9]） |</p>
-<ol>
-<li>重复元字符</li>
-</ol>
-<p>| 元字符 | 说  明 |<br>| —- | —- |<br>| * | 0个或多个匹配 |<br>| + | 1个或多个匹配（等于{1,}） |<br>| ? | 0个或1个匹配（等于{0,1}） |<br>| {n} | 指定数目的匹配 |<br>| {n,} | 不少于指定数目的匹配 |<br>| {n,m} | 匹配数目的范围（m不超过255） |</p>
-<ol>
-<li>定位元字符</li>
-</ol>
-<p>| 元字符 | 说 明 |<br>| —- | —- |<br>| ^ | 文本的开始 |<br>| $ | 文本的结尾 |<br>| [[:&lt;:]] | 词的开始 |<br>| [[:&gt;:]] | 词的结尾 |</p>
-</li>
-<li><p>例子</p>
-<blockquote>
+<li>例子<blockquote>
 <p>SELECT *<br>FROM products<br>WHERE prod_name REGEXP ‘[:digit:]$’;   匹配以数字结尾的prod_name</p>
 </blockquote>
 </li>
@@ -418,27 +542,190 @@
 <p>SELECT Concat(prod_name,’(‘,prod_price,’)’) AS sale_price FROM products;</p>
 </blockquote>
 </li>
-<li>算法计算<br>SELECT 字段1, 字段2, 字段1 +-*/ 字段2 AS 字段3 FROM 表名;   检索结果为字段1，字段2,字段3:字段1 + 字段2<blockquote>
+<li>算法计算<br>SELECT 字段1, 字段2, 字段1 +-*&#x2F; 字段2 AS 字段3 FROM 表名;   检索结果为字段1，字段2,字段3:字段1 + 字段2<blockquote>
 <p>SELECT prod_name, prod_price, prod_price * 1.2 AS sale_price FROM products;</p>
 </blockquote>
 </li>
 <li>奇技淫巧<ol>
-<li>获取当前时间<br>SELECT Now(); </li>
+<li>获取当前时间<br>SELECT Now();</li>
 </ol>
 </li>
 </ol>
 <hr>
-<h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><ol>
-<li><p>常用的文本处理函数</p>
-<p>| 函 数 | 说 明 |<br>| —- | —- |<br>| Left() | 返回串左边的字符 |<br>| Length() | 返回串的长度 |<br>| Locate() | 找出串的一个子串 |<br>| Lower() | 将串转换为小写 |<br>| LTrim() | 去掉串左边的空格 |<br>| Right() | 返回串右边的字符 |<br>| RTrim() | 去掉串右边的空格 |<br>| Soundex() | 返回串的SOUNDEX值 |<br>| SubString() | 返回子串的字符 |<br>| Upper() | 将串转换为大写 |</p>
-</li>
-<li><p>常用日期和时间处理函数</p>
-<p>| 函 数 | 说 明 |<br>| —- | —- |<br>| AddDate() | 增加一个日期（天、周等） |<br>| AddTime() | 增加一个时间（时、分等） |<br>| CurDate() | 返回当前日期 |<br>| CurTime() | 返回当前时间 |<br>| Date() | 返回日期时间的日期部分 |<br>| DateDiff() | 计算两个日期之差 |<br>| Date_Add() | 高度灵活的日期运算函数 |<br>| Date_Format() | 返回一个格式化的日期或时间串 |<br>| Day() | 返回一个日期的天数部分 |<br>| DayOfWeek() | 对于一个日期，返回对应的星期几 |<br>| Hour() | 返回一个时间的小时部分 |<br>| Minute() | 返回一个时间的分钟部分 |<br>| Month() | 返回一个日期的月份部分 |<br>| Now() | 返回当前日期和时间 |<br>| Second() | 返回一个时间的秒部分 |<br>| Time() | 返回一个日期时间的时间部分 |<br>| Year() | 返回一个日期的年份部分 |</p>
-</li>
-<li><p>常用数值处理函数</p>
-<p>| 函 数 | 说 明 |<br>| —- | —- |<br>| Abs() | 返回一个数的绝对值 |<br>| Cos() | 返回一个角度的余弦 |<br>| Exp() | 返回一个数的指数值 |<br>| Mod() | 返回除操作的余数 |<br>| Pi() | 返回圆周率 |<br>| Rand() | 返回一个随机数 |<br>| Sin() | 返回一个角度的正弦 |<br>| Sqrt() | 返回一个数的平方根 |<br>| Tan() | 返回一个角度的正切 |</p>
-</li>
-</ol>
+<h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><pre><code>常用的文本处理函数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left()</td>
+<td>返回串左边的字符</td>
+</tr>
+<tr>
+<td>Length()</td>
+<td>返回串的长度</td>
+</tr>
+<tr>
+<td>Locate()</td>
+<td>找出串的一个子串</td>
+</tr>
+<tr>
+<td>Lower()</td>
+<td>将串转换为小写</td>
+</tr>
+<tr>
+<td>LTrim()</td>
+<td>去掉串左边的空格</td>
+</tr>
+<tr>
+<td>Right()</td>
+<td>返回串右边的字符</td>
+</tr>
+<tr>
+<td>RTrim()</td>
+<td>去掉串右边的空格</td>
+</tr>
+<tr>
+<td>Soundex()</td>
+<td>返回串的SOUNDEX值</td>
+</tr>
+<tr>
+<td>SubString()</td>
+<td>返回子串的字符</td>
+</tr>
+<tr>
+<td>Upper()</td>
+<td>将串转换为大写</td>
+</tr>
+</tbody></table>
+<pre><code> 常用日期和时间处理函数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AddDate()</td>
+<td>增加一个日期（天、周等）</td>
+</tr>
+<tr>
+<td>AddTime()</td>
+<td>增加一个时间（时、分等）</td>
+</tr>
+<tr>
+<td>CurDate()</td>
+<td>返回当前日期</td>
+</tr>
+<tr>
+<td>CurTime()</td>
+<td>返回当前时间</td>
+</tr>
+<tr>
+<td>Date()</td>
+<td>返回日期时间的日期部分</td>
+</tr>
+<tr>
+<td>DateDiff()</td>
+<td>计算两个日期之差</td>
+</tr>
+<tr>
+<td>Date_Add()</td>
+<td>高度灵活的日期运算函数</td>
+</tr>
+<tr>
+<td>Date_Format()</td>
+<td>返回一个格式化的日期或时间串</td>
+</tr>
+<tr>
+<td>Day()</td>
+<td>返回一个日期的天数部分</td>
+</tr>
+<tr>
+<td>DayOfWeek()</td>
+<td>对于一个日期，返回对应的星期几</td>
+</tr>
+<tr>
+<td>Hour()</td>
+<td>返回一个时间的小时部分</td>
+</tr>
+<tr>
+<td>Minute()</td>
+<td>返回一个时间的分钟部分</td>
+</tr>
+<tr>
+<td>Month()</td>
+<td>返回一个日期的月份部分</td>
+</tr>
+<tr>
+<td>Now()</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>Second()</td>
+<td>返回一个时间的秒部分</td>
+</tr>
+<tr>
+<td>Time()</td>
+<td>返回一个日期时间的时间部分</td>
+</tr>
+<tr>
+<td>Year()</td>
+<td>返回一个日期的年份部分</td>
+</tr>
+</tbody></table>
+<pre><code> 常用数值处理函数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>函 数</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Abs()</td>
+<td>返回一个数的绝对值</td>
+</tr>
+<tr>
+<td>Cos()</td>
+<td>返回一个角度的余弦</td>
+</tr>
+<tr>
+<td>Exp()</td>
+<td>返回一个数的指数值</td>
+</tr>
+<tr>
+<td>Mod()</td>
+<td>返回除操作的余数</td>
+</tr>
+<tr>
+<td>Pi()</td>
+<td>返回圆周率</td>
+</tr>
+<tr>
+<td>Rand()</td>
+<td>返回一个随机数</td>
+</tr>
+<tr>
+<td>Sin()</td>
+<td>返回一个角度的正弦</td>
+</tr>
+<tr>
+<td>Sqrt()</td>
+<td>返回一个数的平方根</td>
+</tr>
+<tr>
+<td>Tan()</td>
+<td>返回一个角度的正切</td>
+</tr>
+</tbody></table>
 <hr>
 <h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><ol>
 <li>AVG 函数：计算平均值<br>SELECT AVG(字段) FROM 表名;<blockquote>
@@ -458,11 +745,11 @@
 </blockquote>
 </li>
 <li>SUM 函数：计算总和<br>SELECT SUM(字段) FROM 表名;<blockquote>
-<p>SELECT SUM(money*number) AS total<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+<p>SELECT SUM(money*number) AS total<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’;</p>
 </blockquote>
 </li>
 <li>聚焦不同的值<br>SELECT DISTINCT 字段 FROM 表名;<blockquote>
-<p>SELECT AVG(DISTINCT id) AS ans<br>FROM products<br>WHERE prod_name = ‘shangping1’;</p>
+<p>SELECT AVG(DISTINCT id) AS ans<br>FROM products<br>WHERE prod_name &#x3D; ‘shangping1’;</p>
 </blockquote>
 </li>
 </ol>
@@ -471,14 +758,15 @@
 <li>GROUP BY 语句：对数据进行分组</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT prod_name ,COUNT(*) AS ans</span><br><span class="line">FROM products</span><br><span class="line">GROUP BY prod_name;</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>HAVING 语句：对分组数据进行过滤</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT prod_name ,COUNT(*) AS ans</span><br><span class="line">FROM products</span><br><span class="line">GROUP BY prod_name</span><br><span class="line">HAVING COUNT(*) &gt; 1;</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="3">
 <li>SELECT子句顺序</li>
 </ol>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -487,8 +775,7 @@
 <th>是否必须使用</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>SELECT</td>
 <td>要返回的列或表达式</td>
 <td>是</td>
@@ -523,63 +810,65 @@
 <td>要检索的行数</td>
 <td>否</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h1 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h1><ol>
 <li>利用子查询进行过滤</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT cust_contact, cust_email</span><br><span class="line">FROM customers</span><br><span class="line">WHERE cust_id IN (SELECT cust_id</span><br><span class="line">                  FROM orders</span><br><span class="line">                  WHERE order_num IN (SELECT order_num</span><br><span class="line">                                       FROM orderitems</span><br><span class="line">                                       WHERE prod_id = &#x27;P001&#x27;</span><br><span class="line"> ));</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>作为计算字段使用子查询</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   SELECT cust_name, cust_state, (SELECT COUNT(*)</span><br><span class="line">                                 FROM orders</span><br><span class="line">                                 WHERE orders.cust_id = customers.cust_id) AS orders</span><br><span class="line">FROM customers</span><br><span class="line">ORDER BY cust_name;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h1 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h1><ol>
 <li>等值联结</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT vend_name, prod_name, prod_price</span><br><span class="line">FROM vendors, products</span><br><span class="line">WHERE vendors.vend_id = products.vend_id</span><br><span class="line">ORDER BY vend_name, prod_name;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>笛卡尔积</li>
 </ol>
 <p>SELECT * FROM 表名1, 表名2;    笛卡尔积</p>
 <blockquote>
 <p>SELECT * FROM products, orderitems;</p>
-<ol>
+</blockquote>
+<ol start="3">
 <li>INNER JOIN:内联联结</li>
 </ol>
-</blockquote>
-<p>SELECT 字段 FROM 表名1 INNER JOIN 表名2 ON 表名1.字段 = 表名2.字段;</p>
+<p>SELECT 字段 FROM 表名1 INNER JOIN 表名2 ON 表名1.字段 &#x3D; 表名2.字段;</p>
 <blockquote>
-<p>SELECT vend_name, prod_name, prod_price<br>   FROM vendors INNER JOIN products<br>   ON vendors.vend_id = products.vend_id;</p>
+<p>SELECT vend_name, prod_name, prod_price<br>   FROM vendors INNER JOIN products<br>   ON vendors.vend_id &#x3D; products.vend_id;</p>
 </blockquote>
-<ol>
-<li>联结多个表==上一章的利用子查询进行过滤</li>
+<ol start="4">
+<li><p>联结多个表&#x3D;&#x3D;上一章的利用子查询进行过滤</p>
+<blockquote>
+<p>SELECT cust_name, cust_contact<br>FROM customers, orders, orderitems<br>WHERE customers.cust_id &#x3D; orders.cust_id<br>AND orderitems.order_num &#x3D; orders.order_num<br>AND prod_id &#x3D; ‘P001’;</p>
+</blockquote>
+</li>
 </ol>
-<blockquote>
-<p>SELECT cust_name, cust_contact<br>   FROM customers, orders, orderitems<br>   WHERE customers.cust_id = orders.cust_id<br>   AND orderitems.order_num = orders.order_num<br>   AND prod_id = ‘P001’;</p>
-</blockquote>
 <hr>
 <h1 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h1><ol>
 <li>使用别名</li>
 </ol>
 <blockquote>
-<p>SELECT cust_name, cust_contact<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id = o.cust_id<br>   AND oi.order_num = o.order_num<br>   AND prod_id = ‘P001’;</p>
+<p>SELECT cust_name, cust_contact<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id &#x3D; o.cust_id<br>   AND oi.order_num &#x3D; o.order_num<br>   AND prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-<ol>
+<ol start="2">
 <li>自联结</li>
 </ol>
 <blockquote>
-<p>SELECT p1.prod_id, p1.prod_name<br>   FROM products AS p1, products AS p2<br>   WHERE p1.vend_id = p2.vend_id<br>   AND p2.prod_id = ‘P001’;</p>
+<p>SELECT p1.prod_id, p1.prod_name<br>   FROM products AS p1, products AS p2<br>   WHERE p1.vend_id &#x3D; p2.vend_id<br>   AND p2.prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-<ol>
+<ol start="3">
 <li>自然联结：结果会将相同的列不显示</li>
 </ol>
 <blockquote>
-<p>SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id = o.cust_id<br>  AND oi.order_num = o.order_num<br>  AND oi.prod_id = ‘P001’;</p>
+<p>SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price<br>   FROM customers AS c, orders AS o, orderitems AS oi<br>   WHERE c.cust_id &#x3D; o.cust_id<br>  AND oi.order_num &#x3D; o.order_num<br>  AND oi.prod_id &#x3D; ‘P001’;</p>
 </blockquote>
-<ol>
+<ol start="4">
 <li><p>外部联结：结果会显示所有行，包括联结条件为空的行,而内部联结仅仅显示满足条件的行</p>
 <ol>
 <li>LEFT OUTER JOIN</li>
@@ -588,26 +877,27 @@
 </li>
 <li><p>示例：使用带聚函数的联结</p>
 <blockquote>
-<p>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id = orders.cust_id<br>GROUP BY customers.cust_id;</p>
+<p>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id &#x3D; orders.cust_id<br>GROUP BY customers.cust_id;</p>
 </blockquote>
 </li>
 </ol>
 <hr>
 <h1 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h1><ol>
-<li>UNION：合并两或多个查询结果</li>
-</ol>
+<li><p>UNION：合并两或多个查询结果</p>
 <blockquote>
-<p> SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE prod_price &lt;= 250.0<br>   UNION<br>   SELECT vend_id, prod_id, prod_price<br>   FROM products<br>   WHERE vend_id IN (‘V001’, ‘V003’);</p>
+<p> SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’);</p>
 </blockquote>
-<ol>
-<li>UNION ALL：合并两或多个查询结果，并保留重复行</li>
-</ol>
+</li>
+<li><p>UNION ALL：合并两或多个查询结果，并保留重复行</p>
 <blockquote>
-<p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;= 250.0<br>UNION ALL<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’);</p>
+<p>SELECT vend_id, prod_id, prod_price</p>
 </blockquote>
-<ol>
+</li>
+</ol>
+<p>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION ALL<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’);</p>
+<ol start="3">
 <li>排序只需要在最后一条语句中添加 ORDER BY 语句<blockquote>
-<p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;= 250.0<br>UNION<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’)<br>ORDER BY prod_price;</p>
+<p>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE prod_price &lt;&#x3D; 250.0<br>UNION<br>SELECT vend_id, prod_id, prod_price<br>FROM products<br>WHERE vend_id IN (‘V001’, ‘V003’)<br>ORDER BY prod_price;</p>
 </blockquote>
 </li>
 </ol>
@@ -616,79 +906,89 @@
 <li>插入整行</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> vendors (</span><br><span class="line">    vend_id,</span><br><span class="line">    vend_name,</span><br><span class="line">    vend_address,</span><br><span class="line">    vend_city,</span><br><span class="line">    vend_state,</span><br><span class="line">    vend_zip,</span><br><span class="line">    vend_country) </span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;V011&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;供应商十一&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市龙子湖区四七街道00号&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;河南&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;543112&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;china&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>插入多行</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> vendors (</span><br><span class="line">    vend_id,</span><br><span class="line">    vend_name,</span><br><span class="line">    vend_address,</span><br><span class="line">    vend_city,</span><br><span class="line">    vend_state,</span><br><span class="line">    vend_zip,</span><br><span class="line">    vend_country) </span><br><span class="line"><span class="keyword">VALUES</span> (</span><br><span class="line">    <span class="string">&#x27;V011&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;供应商十一&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市龙子湖区四七街道00号&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;河南&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;543112&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;china&#x27;</span></span><br><span class="line">),</span><br><span class="line">(<span class="string">&#x27;V012&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;供应商十二&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市龙子湖区四七街道01号&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;郑州市&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;河南&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5431134&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;china&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="3">
 <li>插入检索出的数据（行数要对应）</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> example (a1, A2, A3, A4, A5, A6, A7, A8, A9)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h1 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h1><ol>
 <li>更新数据（没有过滤就是更新所有cust_email字段）</li>
 </ol>
 <blockquote>
-<p>UPDATE customers<br>SET cust_email = ‘newemail@example.com’<br>WHERE cust_id = ‘1000000001’;</p>
+<p>UPDATE customers<br>SET cust_email &#x3D; ‘<a href="mailto:&#110;&#101;&#x77;&#101;&#109;&#x61;&#105;&#x6c;&#64;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">newemail@example.com</a>‘<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
 </blockquote>
-<ol>
+<ol start="2">
 <li>删除数据(没有过滤的话就是删除所有)</li>
 </ol>
 <blockquote>
-<p> DELETE FROM customers<br>WHERE cust_id = ‘1000000001’;</p>
+<p> DELETE FROM customers<br>WHERE cust_id &#x3D; ‘1000000001’;</p>
 </blockquote>
 <hr>
 <h1 id="创建和操作表"><a href="#创建和操作表" class="headerlink" title="创建和操作表"></a>创建和操作表</h1><ol>
-<li>创建表—-CREATE TABLE</li>
-<li>自动增加值—-AUTO_INCREMENT</li>
-<li>默认值—-DEFAULT</li>
-<li>主键—-PRIMARY KEY</li>
-<li>不可以为NULL—-NOT NULL</li>
+<li>创建表—CREATE TABLE</li>
+<li>自动增加值—AUTO_INCREMENT</li>
+<li>默认值—DEFAULT</li>
+<li>主键—PRIMARY KEY</li>
+<li>不可以为NULL—NOT NULL</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE example (</span><br><span class="line">  name      CHAR(10)    NOT NULL,</span><br><span class="line">  id        INT NOT     NULL     AUTO_INCREMENT,</span><br><span class="line">  nickname  CHAR(100)   NOT NULL DEFAULT &#x27;cainiao&#x27;,</span><br><span class="line">  PRIMARY   KEY (id)</span><br><span class="line">) ENGINE=InnoDB;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>删除表 DROP TABLE</li>
-</ol>
+
+<ol start="4">
+<li><p>删除表 DROP TABLE</p>
 <blockquote>
 <p>DROP TABLE example;</p>
 </blockquote>
-<ol>
-<li>重命名表 ALTER TABLE<blockquote>
+</li>
+<li><p>重命名表 ALTER TABLE</p>
+<blockquote>
 <p>RENAME TABLE example TO new_example;</p>
 </blockquote>
 </li>
 </ol>
 <hr>
 <h1 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h1><ol>
-<li>创建视图—-CREATE VIEW name AS(将视图当初一个类似函数的东西)</li>
-</ol>
+<li><p>创建视图—CREATE VIEW name AS(将视图当初一个类似函数的东西)</p>
 <blockquote>
-<p>CREATE VIEW example AS<br>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id = orders.cust_id<br>GROUP BY customers.cust_id;</p>
+<p>CREATE VIEW example AS</p>
 </blockquote>
-<ol>
-<li>对视图的操作</li>
+</li>
 </ol>
+<p>SELECT customers.cust_name, customers.cust_id, COUNT(orders.order_num) AS num_ord<br>FROM customers<br>INNER JOIN orders<br>ON customers.cust_id &#x3D; orders.cust_id<br>GROUP BY customers.cust_id;</p>
+<ol start="2">
+<li><p>对视图的操作</p>
 <blockquote>
 <p>SELECT *<br>FROM example;</p>
 </blockquote>
+</li>
+</ol>
 <hr>
 <h1 id="使用存储过程"><a href="#使用存储过程" class="headerlink" title="使用存储过程"></a>使用存储过程</h1><ol>
-<li>创建存储过程—-CREATE PROCEDURE name(参数列表)</li>
-<li>输入参数—-IN 参数</li>
-<li>输出参数—-OUT 参数 —-INTO 参数：写入</li>
+<li>创建存储过程—CREATE PROCEDURE name(参数列表)</li>
+<li>输入参数—IN 参数</li>
+<li>输出参数—OUT 参数 —INTO 参数：写入</li>
 <li>注意切换分隔符</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 1) 切换分隔符，避免过程体内的 &quot;;&quot; 被误判</span></span><br><span class="line">DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2) 定义存储过程，三个 OUT 参数：p1 最小价、p2 最大价、p3 平均价</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> example(</span><br><span class="line">    <span class="keyword">OUT</span> p1 <span class="type">DECIMAL</span>(<span class="number">8</span>,<span class="number">2</span>),</span><br><span class="line">    <span class="keyword">OUT</span> p2 <span class="type">DECIMAL</span>(<span class="number">8</span>,<span class="number">2</span>),</span><br><span class="line">    <span class="keyword">OUT</span> p3 <span class="type">DECIMAL</span>(<span class="number">8</span>,<span class="number">2</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 同时查询 MIN、MAX、AVG，并一次性 INTO 三个变量</span></span><br><span class="line">    <span class="keyword">SELECT</span></span><br><span class="line">        <span class="built_in">MIN</span>(item_price),</span><br><span class="line">        <span class="built_in">MAX</span>(item_price),</span><br><span class="line">        <span class="built_in">AVG</span>(item_price)</span><br><span class="line">    <span class="keyword">INTO</span></span><br><span class="line">        p1, p2, p3</span><br><span class="line">    <span class="keyword">FROM</span></span><br><span class="line">        orderitems;</span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3) 恢复默认分隔符</span></span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="5">
 <li>调用存储过程，查看结果(参数前要加@)</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span> example(<span class="variable">@min_price</span>, <span class="variable">@max_price</span>, <span class="variable">@avg_price</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span>  <span class="variable">@min_price</span>, <span class="variable">@max_price</span>, <span class="variable">@avg_price</span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>删除存储过程</li>
-</ol>
+
+<ol start="6">
+<li><p>删除存储过程</p>
 <blockquote>
 <p>DROP PROCEDURE IF EXISTS name;</p>
 </blockquote>
+</li>
+</ol>
 <hr>
 <h1 id="使用游标"><a href="#使用游标" class="headerlink" title="使用游标"></a>使用游标</h1><ol>
 <li>创建游标</li>
@@ -699,41 +999,42 @@
 </blockquote>
 </li>
 </ul>
-<ol>
-<li>游标打开和关闭</li>
-</ol>
+<ol start="2">
+<li><p>游标打开和关闭</p>
 <blockquote>
 <p>OPEN 游标名字;<br>CLOSE 游标名字;</p>
 </blockquote>
-<ol>
-<li>存储过程使用游标</li>
+</li>
+<li><p>存储过程使用游标</p>
+</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER //   -- 改变语句结束符，防止过程体内的分号被误识为语句结束</span><br><span class="line">CREATE PROCEDURE processorders()  -- 创建名为 processorders 的存储过程</span><br><span class="line">BEGIN</span><br><span class="line">   DECLARE done BOOLEAN DEFAULT 0;  -- 定义一个布尔变量 done，标记游标是否读取完毕，初始为 0（未完成）</span><br><span class="line"></span><br><span class="line">   DECLARE o INT;  -- 定义变量 o，用于存储每次 FETCH 得到的 order_item 值</span><br><span class="line">   DECLARE t DECIMAL(8,2);  -- 定义变量 t，用于存储 get_min_price 输出的总价（或最小价格）</span><br><span class="line">   -- 游标的创建</span><br><span class="line">   DECLARE ordernumbers CURSOR  -- 声明游标 ordernumbers</span><br><span class="line">   FOR</span><br><span class="line">   SELECT order_item FROM orderitems;  -- 游标查询的是 orderitems 表中的 order_item 字段</span><br><span class="line"></span><br><span class="line">   DECLARE CONTINUE HANDLER FOR SQLSTATE &#x27;02000&#x27; SET done = 1;  </span><br><span class="line">   -- 当游标读取不到数据（即到达结尾，SQLSTATE &#x27;02000&#x27;）时，将 done 设为 1（结束标记）</span><br><span class="line"></span><br><span class="line">   CREATE TABLE IF NOT EXISTS ordertotals</span><br><span class="line">   (order_num INT, total DECIMAL(8,2));  </span><br><span class="line">   -- 如果还没有表 ordertotals，就创建它，记录订单号和对应的 total 值（价格）</span><br><span class="line"></span><br><span class="line">   OPEN ordernumbers;  -- 打开游标，开始读取数据</span><br><span class="line"></span><br><span class="line">   REPEAT  -- 开始循环</span><br><span class="line">     FETCH ordernumbers INTO o;  -- 将游标当前行的 order_item 值读取到变量 o 中</span><br><span class="line">     CALL get_min_price(t);  -- 调用存储过程 get_min_price，输出参数为 t</span><br><span class="line">     INSERT INTO ordertotals (order_num,total)</span><br><span class="line">     VALUES (o,t);  -- 将读取的 order_item（o）和得到的价格（t）插入到 ordertotals 表中</span><br><span class="line">   UNTIL done END REPEAT;  -- 直到 done 被置为 1（没有更多数据）时结束循环</span><br><span class="line"></span><br><span class="line">   CLOSE ordernumbers;  -- 关闭游标</span><br><span class="line">END //</span><br><span class="line">DELIMITER ;  -- 恢复默认语句结束符</span><br></pre></td></tr></table></figure>
+
 <h1 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h1><ol>
 <li>事务的开始</li>
 </ol>
 <blockquote>
 <p>START TRANSACTION;</p>
 </blockquote>
-<ol>
+<ol start="2">
 <li>回退</li>
 </ol>
 <blockquote>
 <p>ROLLBACK;<br>ROLLBACK TO name(保留点名字)</p>
 </blockquote>
-<ol>
+<ol start="3">
 <li>使用保留点</li>
 </ol>
 <blockquote>
 <p>SAVEPOINT name;</p>
 </blockquote>
-<ol>
+<ol start="4">
 <li>提交</li>
 </ol>
 <blockquote>
 <p>COMMIT;</p>
 </blockquote>
-<ol>
+<ol start="5">
 <li>示例</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">START TRANSACTION;</span><br><span class="line">DELETE FROM example;</span><br><span class="line">SELECT * FROM example;   -- 此时为空</span><br><span class="line">ROLLBACK;</span><br><span class="line">SELECT * FROM example;   -- 数据恢复成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
